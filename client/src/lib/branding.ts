@@ -3,6 +3,7 @@ import { DEMO_CREDENTIALS, EMR_LOGO_PUBLIC_PATH, SAAS_CREDENTIALS } from "@share
 
 export const EMR_LOGO_PATH = EMR_LOGO_PUBLIC_PATH;
 export const EMR_TITLE_LOGO_PATH = "/EMR-Soft-Logo/emr-title-logo.png";
+export const EMR_FAVICON_PATH = "/EMR-Soft-Logo/emr-title-logo.png";
 export const EMR_DARK_LOGO_PATH = "/EMR-Soft-Logo/logo-Emrsoft-night.png";
 export const EMR_BRAND_NAME = "emrSoft";
 export const EMR_PLATFORM_TITLE = "EmrSoft- AI-Powered Healthcare Platform";
