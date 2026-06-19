@@ -1,0 +1,244 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useMutation } from '@tanstack/react-query';
+import { saasApiRequest } from '@/lib/saasQueryClient';
+import { useToast } from '@/hooks/use-toast';
+import { Shield, Lock, Eye, EyeOff, ShieldCheck, LockKeyhole } from 'lucide-react';
+import { EMR_TITLE_LOGO_PATH, EMR_BRAND_NAME, SAAS_CREDENTIALS } from '@/lib/branding';
+
+const saasLoginSchema = z.object({
+  username: z.string().min(1, 'Username is required'),
+  password: z.string().min(1, 'Password is required'),
+});
+
+type SaaSLoginForm = z.infer<typeof saasLoginSchema>;
+
+interface SaaSLoginProps {
+  onLoginSuccess: (token: string) => void;
+}
+
+export default function SaaSLogin({ onLoginSuccess }: SaaSLoginProps) {
+  const [error, setError] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<SaaSLoginForm>({
+    resolver: zodResolver(saasLoginSchema),
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
+
+  const loginMutation = useMutation({
+    mutationFn: async (data: SaaSLoginForm) => {
+      const response = await saasApiRequest('POST', '/api/saas/login', data);
+      return response.json();
+    },
+    onSuccess: (result) => {
+      if (result.success) {
+        localStorage.setItem('saasToken', result.token);
+        localStorage.setItem('saas_owner', JSON.stringify(result.owner));
+        onLoginSuccess(result.token);
+        setSuccessMessage("Welcome to SaaS Administration Portal");
+        setShowSuccessModal(true);
+      } else {
+        setError(result.message || 'Invalid credentials');
+      }
+    },
+    onError: (error: any) => {
+      setError('Authentication failed. Please check your credentials.');
+    },
+  });
+
+  const onSubmit = (data: SaaSLoginForm) => {
+    setError(null);
+    loginMutation.mutate(data);
+  };
+
+  return (
+    <div className="relative min-h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
+      {/* Encryption-themed background icons */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <ShieldCheck className="absolute -left-8 top-[8%] h-44 w-44 text-blue-200/50 dark:text-blue-900/40 rotate-[-12deg]" />
+        <LockKeyhole className="absolute right-[6%] top-[12%] h-36 w-36 text-blue-300/40 dark:text-blue-800/35 rotate-[18deg]" />
+        <Lock className="absolute left-[10%] bottom-[14%] h-52 w-52 text-blue-200/45 dark:text-blue-900/30 rotate-[8deg]" />
+        <ShieldCheck className="absolute right-[-4%] bottom-[10%] h-56 w-56 text-blue-300/35 dark:text-blue-800/30 rotate-[24deg]" />
+        <LockKeyhole className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 text-blue-100/30 dark:text-blue-950/25" />
+      </div>
+
+      <Card className="relative z-10 w-full max-w-md shadow-2xl">
+        <CardHeader className="space-y-4 text-center">
+          <div className="flex justify-center">
+            <img 
+              src={EMR_TITLE_LOGO_PATH} 
+              alt={EMR_BRAND_NAME} 
+              className="h-16 w-auto"
+            />
+          </div>
+          <div className="flex items-center justify-center space-x-2">
+            <Shield className="h-6 w-6 text-red-600" />
+            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+              SaaS Administration
+            </CardTitle>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Owner Access Only - Restricted Portal
+          </p>
+        </CardHeader>
+        
+        <CardContent className="space-y-6">
+          {error && (
+            <Alert variant="destructive">
+              <Lock className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="Owner username"
+                {...form.register('username')}
+                className="w-full"
+              />
+              {form.formState.errors.username && (
+                <p className="text-sm text-red-600">
+                  {form.formState.errors.username.message}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Owner password"
+                  {...form.register('password')}
+                  className="w-full pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </Button>
+              </div>
+              {form.formState.errors.password && (
+                <p className="text-sm text-red-600">
+                  {form.formState.errors.password.message}
+                </p>
+              )}
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? (
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Authenticating...</span>
+                </div>
+              ) : (
+                <>
+                  <Lock className="w-4 h-4 mr-2" />
+                  Access SaaS Portal
+                </>
+              )}
+            </Button>
+          </form>
+
+          <div className="mt-6 space-y-3">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-gray-200 dark:border-gray-700" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="bg-white dark:bg-gray-900 px-3 font-semibold text-red-600 dark:text-red-400">
+                  Demo Credentials
+                </span>
+              </div>
+            </div>
+            <div className="rounded-md bg-gray-100 dark:bg-gray-800 px-3 py-2 space-y-0.5 text-sm">
+              <div className="font-semibold text-gray-900 dark:text-gray-100">{SAAS_CREDENTIALS.role}</div>
+              <div className="text-gray-700 dark:text-gray-300">Username: {SAAS_CREDENTIALS.username}</div>
+              <div className="text-gray-700 dark:text-gray-300">Password: {SAAS_CREDENTIALS.password}</div>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="w-full text-red-600 border-red-200 hover:bg-red-50 dark:text-red-400 dark:border-red-800 dark:hover:bg-red-950"
+              onClick={() => {
+                form.setValue('username', SAAS_CREDENTIALS.username);
+                form.setValue('password', SAAS_CREDENTIALS.password);
+              }}
+            >
+              Use SaaS Admin Credentials
+            </Button>
+          </div>
+
+          <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+              This is a restricted area for emrSoft owner only.
+              <br />
+              Unauthorized access is prohibited.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-green-600">Success</DialogTitle>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <p className="text-gray-700">{successMessage}</p>
+          </div>
+
+          <div className="flex justify-end">
+            <Button
+              onClick={() => {
+                setShowSuccessModal(false);
+                setSuccessMessage("");
+              }}
+            >
+              OK
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
