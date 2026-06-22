@@ -9261,7 +9261,7 @@ export class DatabaseStorage implements IStorage {
         billingSettings: {
           currency: 'GBP',
           taxRate: 20,
-          invoicePrefix: 'CURA',
+          invoicePrefix: 'EMRSOFT',
           paymentMethods: ['stripe', 'paypal'],
         },
       };
@@ -9305,7 +9305,7 @@ export class DatabaseStorage implements IStorage {
         billingSettings: {
           currency: 'GBP',
           taxRate: 20,
-          invoicePrefix: 'CURA',
+          invoicePrefix: 'EMRSOFT',
           paymentMethods: ['stripe', 'paypal'],
         },
       };

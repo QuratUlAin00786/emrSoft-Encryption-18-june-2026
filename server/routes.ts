@@ -32,6 +32,7 @@ import {
 } from "./appointment-wall-clock.js";
 // PayPal imports moved to dynamic imports to avoid initialization errors when credentials are missing
 import { gdprComplianceService } from "./services/gdpr-compliance";
+import { DEMO_TENANT_ORG } from "@shared/demo-credentials";
 import { insertGdprConsentSchema, insertGdprDataRequestSchema, updateMedicalImageReportFieldSchema, medicationsDatabase, patientDrugInteractions, insuranceVerifications, type Appointment, organizations, subscriptions, users, User, patients, symptomChecks, quickbooksConnections, insertClinicHeaderSchema, insertClinicFooterSchema, doctorsFee, invoices, labResults, insertMessageTemplateSchema, passwordResetTokens, saasSubscriptions, saasPackages, saasPayments, organizationIntegrations, insertTreatmentSchema, insertTreatmentsInfoSchema, InsertSaaSSubscription, imagingPricing, scheduledVideoCalls, insertScheduledVideoCallSchema, messages, analyticsSubjects, analyticsSubjectTreatments } from "../shared/schema";
 import * as schema from "../shared/schema";
 import { db, pool, activeDbSchema } from "./db";
@@ -892,7 +893,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       status: 'ok',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
-      service: 'cura-emr',
+      service: 'emrsoft',
       environment: process.env.NODE_ENV || 'development'
     });
   });
@@ -1882,7 +1883,7 @@ If you did not request this change, please contact ${clinicName}.`;
     res.status(200).json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
-      service: 'cura-emr'
+      service: 'emrsoft'
     });
   });
 
@@ -6322,7 +6323,7 @@ This treatment plan should be reviewed and adjusted based on individual patient 
       const createdPatientRow = await db.transaction(async (tx) => {
         // Step 1: Create user record in users table with hashed password
         console.log("🔵 [PATIENT_CREATION] Starting transaction...");
-        const hashedPassword = await bcrypt.hash("cura123", 10);
+        const hashedPassword = await bcrypt.hash("emrsoft123", 10);
         console.log("🔵 [PATIENT_CREATION] Password hashed successfully");
 
         // Validate that email is provided - don't generate placeholder
@@ -26962,8 +26963,8 @@ ${clinicName}`;
 
       console.log("Website appointment booking request:", req.body);
 
-      // For demo purposes, we'll use the default tenant 'cura'
-      const tenant = await storage.getOrganizationBySubdomain('cura');
+      // For demo purposes, use the default emrSoft tenant
+      const tenant = await storage.getOrganizationBySubdomain(DEMO_TENANT_ORG.subdomain);
       if (!tenant) {
         return res.status(400).json({ error: "Organization not found" });
       }
@@ -27062,8 +27063,8 @@ ${clinicName}`;
 
       console.log("Website prescription request:", req.body);
 
-      // For demo purposes, we'll use the default tenant 'cura'
-      const tenant = await storage.getOrganizationBySubdomain('cura');
+      // For demo purposes, use the default emrSoft tenant
+      const tenant = await storage.getOrganizationBySubdomain(DEMO_TENANT_ORG.subdomain);
       if (!tenant) {
         return res.status(400).json({ error: "Organization not found" });
       }
@@ -28994,7 +28995,7 @@ ${clinicName}`;
       const BBB_SECRET = "W8tt2cQCSIy43cGwrGDfeKMEdQn1Bfm9l3aygXn8XA";
 
       // Generate meeting ID and passwords
-      const meetingID = `cura-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      const meetingID = `emrsoft-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const moderatorPW = meetingData.moderatorPassword || `mod-${Math.random().toString(36).substr(2, 8)}`;
       const attendeePW = meetingData.attendeePassword || `att-${Math.random().toString(36).substr(2, 8)}`;
 
@@ -30435,7 +30436,7 @@ ${clinicName}`;
 
       // Get organization info
       const organization = await storage.getOrganization(organizationId);
-      const organizationName = organization?.brandName || organization?.name || "CURA HEALTH EMR";
+      const organizationName = organization?.brandName || organization?.name || "EmrSoft Health EMR";
 
       // Get clinic header and footer
       let clinicHeader = null;
@@ -33303,7 +33304,7 @@ ${clinicName}`;
       const { email, name, phone, appointmentType, preferredDate, preferredTime, reason } = req.body;
 
       // Get organization by subdomain
-      const organization = await storage.getOrganizationBySubdomain('cura');
+      const organization = await storage.getOrganizationBySubdomain(DEMO_TENANT_ORG.subdomain);
       if (!organization) {
         return res.status(404).json({ error: "Organization not found" });
       }
@@ -33377,7 +33378,7 @@ ${clinicName}`;
       const { email, name, phone, medication, reason, medicalHistory } = req.body;
 
       // Get organization by subdomain
-      const organization = await storage.getOrganizationBySubdomain('cura');
+      const organization = await storage.getOrganizationBySubdomain(DEMO_TENANT_ORG.subdomain);
       if (!organization) {
         return res.status(404).json({ error: "Organization not found" });
       }
@@ -38567,7 +38568,7 @@ emrSoft Team
 </head>
 <body>
     <div class="header">
-        <h1>CURA MEDICAL CENTER</h1>
+        <h1>EmrSoft Medical Center</h1>
         <h2>RADIOLOGY DIAGNOSTIC REPORT</h2>
     </div>
     <div style="border-bottom: 1px solid #9ca3af; margin-bottom: 15px;"></div>
@@ -38631,7 +38632,7 @@ emrSoft Team
 
     <div class="footer">
         <span>emrSoft Medical Center | Radiology Department</span>
-        <span>Tel: +44-123-456-7890 | Email: radiology@curamedical.com</span>
+        <span>Tel: +44-123-456-7890 | Email: radiology@emrsoft.ai</span>
     </div>
     
     <div style="text-align: center; font-size: 6pt; color: #1e3a8a; padding: 3px; margin-top: -10px;">
@@ -38764,7 +38765,7 @@ emrSoft Team
         let headerTextY = headerY - 20;
 
         // Clinic name
-        const clinicName = clinicHeader?.clinicName || 'CURA MEDICAL CENTER';
+        const clinicName = clinicHeader?.clinicName || 'EmrSoft Medical Center';
         pageToAddHeader.drawText(clinicName, {
           x: headerInfoX,
           y: headerTextY,
@@ -38797,7 +38798,7 @@ emrSoft Team
 
         // Phone and email
         const phone = clinicHeader?.phone || '+44-123-456-7890';
-        const email = clinicHeader?.email || 'info@curamedical.com';
+        const email = clinicHeader?.email || 'info@emrsoft.ai';
         pageToAddHeader.drawText(`Tel: ${phone} | Fax: ${phone}`, {
           x: headerInfoX,
           y: headerTextY,
@@ -40752,7 +40753,7 @@ emrSoft Team
         let headerTextY = headerY - 20;
 
         // Clinic name
-        const clinicName = clinicHeader?.clinicName || organization?.name || organization?.brandName || 'CURA HEALTH EMR';
+        const clinicName = clinicHeader?.clinicName || organization?.name || organization?.brandName || 'EmrSoft Health EMR';
         pageToAddHeader.drawText(clinicName, {
           x: headerInfoX,
           y: headerTextY,
@@ -40861,13 +40862,13 @@ emrSoft Team
         }
       };
 
-      // Add prescription header section at the very top: CURA HEALTH EMR, Prescription #, and COMPLETED status
+      // Add prescription header section at the very top: EmrSoft Health EMR, Prescription #, and COMPLETED status
       const headerTopY = height - 20;
       const leftMargin = 40;
       const rightMargin = width - 40;
 
-      // CURA HEALTH EMR (top left, bold)
-      page.drawText('CURA HEALTH EMR', {
+      // EmrSoft Health EMR (top left, bold)
+      page.drawText('EmrSoft Health EMR', {
         x: leftMargin,
         y: headerTopY,
         size: 14,
@@ -40882,7 +40883,7 @@ emrSoft Team
         ? `RX-${medicalImage.imageId.replace(/[^0-9]/g, '').substring(0, 13)}-${randomSuffix}`
         : `RX-${timestamp}-${randomSuffix}`;
 
-      // Prescription # below CURA HEALTH EMR
+      // Prescription # below EmrSoft Health EMR
       page.drawText(`Prescription #: ${prescriptionNumber}`, {
         x: leftMargin,
         y: headerTopY - 16,

@@ -42,7 +42,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const savedTheme = localStorage.getItem("cura-theme") as Theme;
+    const savedTheme = localStorage.getItem("emrsoft-theme") as Theme;
     const initialTheme = savedTheme || "light";
     
     // Apply theme immediately without waiting for state update
@@ -64,7 +64,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         setTheme("light");
       } else if (isInitialized) {
         // Restore theme from localStorage when leaving auth pages
-        const savedTheme = localStorage.getItem("cura-theme") as Theme;
+        const savedTheme = localStorage.getItem("emrsoft-theme") as Theme;
         const themeToApply = savedTheme || "light";
         const root = document.documentElement;
         root.classList.remove("light", "dark");
@@ -101,7 +101,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.add(theme);
     
     // Save theme to localStorage (only if not on auth page)
-    localStorage.setItem("cura-theme", theme);
+    localStorage.setItem("emrsoft-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -116,7 +116,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(newTheme);
     
     // Save to localStorage immediately
-    localStorage.setItem("cura-theme", newTheme);
+    localStorage.setItem("emrsoft-theme", newTheme);
   };
 
   return (

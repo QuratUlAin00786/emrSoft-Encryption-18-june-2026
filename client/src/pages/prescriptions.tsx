@@ -3948,7 +3948,7 @@ export default function PrescriptionsPage() {
               <!-- Header -->
               <div class="header">
                 <div class="header-left">
-                  <h1>CURA HEALTH EMR</h1>
+                  <h1>EmrSoft Health EMR</h1>
                   <div class="license-info">
                  
                     Prescription #: ${prescription.prescriptionNumber || "N/A"}
@@ -5651,7 +5651,7 @@ export default function PrescriptionsPage() {
                       <div className="flex flex-col sm:flex-row justify-between items-start gap-4 w-full">
                         <div className="text-center sm:text-left flex-1 min-w-0">
                           <h2 className="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-100 break-words">
-                            CURA HEALTH EMR
+                            EmrSoft Health EMR
                           </h2>
                           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 min-w-0">
                             Prescription #:{" "}

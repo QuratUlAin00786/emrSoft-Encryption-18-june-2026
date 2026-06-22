@@ -130,16 +130,16 @@ export default function ChatbotPage() {
   const generateEmbedCode = () => {
     if (!config) return '';
     
-    return `<!-- Cura Healthcare Chatbot -->
+    return `<!-- EmrSoft Healthcare Chatbot -->
 <script>
 (function() {
   // Create chatbot container
   const chatbotContainer = document.createElement('div');
-  chatbotContainer.id = 'cura-chatbot';
+  chatbotContainer.id = 'emrsoft-chatbot';
   document.body.appendChild(chatbotContainer);
   
   // Chatbot configuration
-  window.CuraChatbot = {
+  window.EmrSoftChatbot = {
     organizationId: ${config.organizationId},
     apiKey: '${config.apiKey}',
     title: '${formData.name}',

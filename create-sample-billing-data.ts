@@ -3,7 +3,7 @@ import { storage } from "./server/storage";
 
 async function createSampleBillingData() {
   try {
-    console.log('🏥 Creating sample billing data for Cura Software Limited...');
+    console.log('🏥 Creating sample billing data for EmrSoft...');
     
     // Get first organization for demo
     const organizations = await storage.getAllOrganizations();
@@ -24,7 +24,7 @@ async function createSampleBillingData() {
         currency: 'GBP',
         paymentMethod: 'stripe',
         paymentStatus: 'completed',
-        description: 'Cura EMR Professional Subscription - Monthly',
+        description: 'EmrSoft Professional Subscription - Monthly',
         dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
         paymentDate: new Date(),
         periodStart: new Date(),
@@ -44,7 +44,7 @@ async function createSampleBillingData() {
         currency: 'GBP',
         paymentMethod: 'paypal',
         paymentStatus: 'pending',
-        description: 'Cura EMR Basic Subscription - Monthly',
+        description: 'EmrSoft Basic Subscription - Monthly',
         dueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days from now
         periodStart: new Date(),
         periodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
@@ -62,7 +62,7 @@ async function createSampleBillingData() {
         currency: 'GBP',
         paymentMethod: 'bank_transfer',
         paymentStatus: 'pending',
-        description: 'Cura EMR Starter Subscription - Monthly',
+        description: 'EmrSoft Starter Subscription - Monthly',
         dueDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days overdue
         periodStart: new Date(),
         periodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
@@ -71,7 +71,7 @@ async function createSampleBillingData() {
           customerEmail: 'finance@healthcare.example.com',
           subscriptionType: 'starter',
           billingCycle: 'monthly',
-          bankReference: 'CURA-HEALTH-2025'
+          bankReference: 'EMRSOFT-HEALTH-2025'
         }
       }
     ];

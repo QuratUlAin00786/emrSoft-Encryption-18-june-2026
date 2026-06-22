@@ -204,9 +204,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#7279FB", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#7279FB", "important");
-        root.style.setProperty("--cura-bluewave", "#7279FB", "important");
-        root.style.setProperty("--cura-electric-lilac", "#7279FB", "important");
-        root.style.setProperty("--cura-mint-drift", "#C073FF", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#7279FB", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#7279FB", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#C073FF", "important");
         root.style.setProperty("--medical-blue", "#7279FB", "important");
         break;
       case "midnight":
@@ -214,9 +214,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#162B61", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#162B61", "important");
-        root.style.setProperty("--cura-bluewave", "#162B61", "important");
-        root.style.setProperty("--cura-electric-lilac", "#2A4082", "important");
-        root.style.setProperty("--cura-mint-drift", "#4A6FA5", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#162B61", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#2A4082", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#4A6FA5", "important");
         root.style.setProperty("--medical-blue", "#162B61", "important");
         break;
       case "steel":
@@ -224,9 +224,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#9B9EAF", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#9B9EAF", "important");
-        root.style.setProperty("--cura-bluewave", "#9B9EAF", "important");
-        root.style.setProperty("--cura-electric-lilac", "#B5B8C7", "important");
-        root.style.setProperty("--cura-mint-drift", "#A8ABBA", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#9B9EAF", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#B5B8C7", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#A8ABBA", "important");
         root.style.setProperty("--medical-blue", "#9B9EAF", "important");
         break;
       case "mist":
@@ -234,9 +234,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#E0E1F4", "important");
         root.style.setProperty("--primary-foreground", "#162B61", "important");
         root.style.setProperty("--ring", "#E0E1F4", "important");
-        root.style.setProperty("--cura-bluewave", "#E0E1F4", "important");
-        root.style.setProperty("--cura-electric-lilac", "#D1D3E8", "important");
-        root.style.setProperty("--cura-mint-drift", "#E8E9F6", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#E0E1F4", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#D1D3E8", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#E8E9F6", "important");
         root.style.setProperty("--medical-blue", "#E0E1F4", "important");
         break;
       case "mint-drift":
@@ -244,9 +244,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#6CFFEB", "important");
         root.style.setProperty("--primary-foreground", "#162B61", "important");
         root.style.setProperty("--ring", "#6CFFEB", "important");
-        root.style.setProperty("--cura-bluewave", "#6CFFEB", "important");
-        root.style.setProperty("--cura-electric-lilac", "#5CFCE6", "important");
-        root.style.setProperty("--cura-mint-drift", "#6CFFEB", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#6CFFEB", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#5CFCE6", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#6CFFEB", "important");
         root.style.setProperty("--medical-blue", "#6CFFEB", "important");
         break;
       case "green":
@@ -254,9 +254,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#22C55E", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#22C55E", "important");
-        root.style.setProperty("--cura-bluewave", "#22C55E", "important");
-        root.style.setProperty("--cura-electric-lilac", "#10B981", "important");
-        root.style.setProperty("--cura-mint-drift", "#34D399", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#22C55E", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#10B981", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#34D399", "important");
         root.style.setProperty("--medical-blue", "#22C55E", "important");
         break;
       case "purple":
@@ -264,9 +264,9 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#7C3AED", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#7C3AED", "important");
-        root.style.setProperty("--cura-bluewave", "#7C3AED", "important");
-        root.style.setProperty("--cura-electric-lilac", "#A855F7", "important");
-        root.style.setProperty("--cura-mint-drift", "#C084FC", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#7C3AED", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#A855F7", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#C084FC", "important");
         root.style.setProperty("--medical-blue", "#7C3AED", "important");
         break;
       case "dark":
@@ -274,18 +274,18 @@ function ProtectedApp() {
         root.style.setProperty("--primary", "#374151", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#374151", "important");
-        root.style.setProperty("--cura-bluewave", "#374151", "important");
-        root.style.setProperty("--cura-electric-lilac", "#4B5563", "important");
-        root.style.setProperty("--cura-mint-drift", "#6B7280", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#374151", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#4B5563", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#6B7280", "important");
         root.style.setProperty("--medical-blue", "#374151", "important");
         break;
       default: // Bluewave (Default)
         root.style.setProperty("--primary", "#4A7DFF", "important");
         root.style.setProperty("--primary-foreground", "#FFFFFF", "important");
         root.style.setProperty("--ring", "#4A7DFF", "important");
-        root.style.setProperty("--cura-bluewave", "#4A7DFF", "important");
-        root.style.setProperty("--cura-electric-lilac", "#7279FB", "important");
-        root.style.setProperty("--cura-mint-drift", "#6CFFEB", "important");
+        root.style.setProperty("--emrsoft-bluewave", "#4A7DFF", "important");
+        root.style.setProperty("--emrsoft-electric-lilac", "#7279FB", "important");
+        root.style.setProperty("--emrsoft-mint-drift", "#6CFFEB", "important");
         root.style.setProperty("--medical-blue", "#4A7DFF", "important");
         break;
     }
@@ -298,7 +298,7 @@ function ProtectedApp() {
 
   // Apply theme immediately on component mount from localStorage
   useEffect(() => {
-    const savedTheme = localStorage.getItem("cura-theme");
+    const savedTheme = localStorage.getItem("emrsoft-theme");
     if (savedTheme) {
       applyTheme(savedTheme);
     }
@@ -322,7 +322,7 @@ function ProtectedApp() {
       ) {
         const themeColor = settings.theme.primaryColor as string;
         applyTheme(themeColor);
-        localStorage.setItem("cura-theme", themeColor);
+        localStorage.setItem("emrsoft-theme", themeColor);
       }
     }
   }, [organization]);

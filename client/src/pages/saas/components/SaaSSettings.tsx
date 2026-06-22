@@ -92,7 +92,7 @@ export default function SaaSSettings() {
     billingSettings: {
       currency: settings?.billingSettings?.currency || 'GBP',
       taxRate: settings?.billingSettings?.taxRate || 20,
-      invoicePrefix: settings?.billingSettings?.invoicePrefix || 'CURA',
+      invoicePrefix: settings?.billingSettings?.invoicePrefix || 'EMRSOFT',
       paymentMethods: settings?.billingSettings?.paymentMethods || ['stripe', 'paypal'],
     },
   });
@@ -192,7 +192,7 @@ export default function SaaSSettings() {
       billingSettings: {
         currency: 'GBP',
         taxRate: 20,
-        invoicePrefix: 'CURA',
+        invoicePrefix: 'EMRSOFT',
         paymentMethods: ['stripe', 'paypal'],
       },
     });

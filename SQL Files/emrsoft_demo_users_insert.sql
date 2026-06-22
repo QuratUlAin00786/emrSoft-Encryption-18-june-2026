@@ -1,7 +1,7 @@
 -- =====================================================
 -- emrSoft demo users — INSERT queries (one per user)
 -- Schema: emrsoft_encrypted (change SET search_path if needed)
--- Tenant org: organization_id = 1 (emrSoft Healthcare / subdomain cura)
+-- Tenant org: organization_id = 1 (emrSoft Healthcare / subdomain emrsoft)
 -- SaaS admin: organization_id = 0
 --
 -- Requires: CREATE EXTENSION IF NOT EXISTS pgcrypto;
@@ -13,7 +13,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 SET search_path TO emrsoft_encrypted;
 
 -- Replace 1 with your tenant organization id if different:
--- SELECT id, name, subdomain FROM organizations WHERE subdomain = 'cura';
+-- SELECT id, name, subdomain FROM organizations WHERE subdomain = 'emrsoft';
 
 -- -----------------------------------------------------
 -- Doctor: paul@emrsoft.ai / doctor123

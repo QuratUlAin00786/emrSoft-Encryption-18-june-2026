@@ -16,7 +16,8 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "db:demo-users-sql": "node scripts/generate-demo-users-sql.mjs",
-    "docs:lab-imaging-pdf": "node scripts/generate-lab-imaging-integration-guide-pdf.cjs"
+    "docs:lab-imaging-pdf": "node scripts/generate-lab-imaging-integration-guide-pdf.cjs",
+    "docs:emrsoft-spec-pdf": "node scripts/generate-emrsoft-specifications-pdf.cjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.37.0",

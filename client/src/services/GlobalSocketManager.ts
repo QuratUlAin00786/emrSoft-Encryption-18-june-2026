@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
 
 //const AVEROX_WS_URL = 'wss://mk1.averox.com/';
-const AVEROX_WS_URL = 'wss://lk.curaemr.ai/';
+const AVEROX_WS_URL = 'wss://mk1.averox.com/';
 const AVEROX_API_KEY = import.meta.env.VITE_AVEROX_API_KEY;
 
 export interface CallSignal {

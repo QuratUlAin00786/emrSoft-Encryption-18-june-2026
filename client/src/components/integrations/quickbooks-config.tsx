@@ -155,7 +155,7 @@ export function QuickBooksConfigCard() {
     }
   };
 
-  const webhookUrl = "https://app.curaemr.ai/api/webhooks/quickbooks";
+  const webhookUrl = "https://app.emrsoft.ai/api/webhooks/quickbooks";
 
   const handleCopyWebhook = () => {
     navigator.clipboard.writeText(webhookUrl);

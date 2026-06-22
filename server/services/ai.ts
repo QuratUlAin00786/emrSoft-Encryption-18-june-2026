@@ -268,7 +268,7 @@ export class AiService {
         nextActions = ['recommend_consultation'];
         break;
       case 'greeting':
-        response = "Hello! I'm your Cura AI Assistant. I can help you book appointments, find prescriptions, and answer general healthcare questions. How can I assist you today?";
+        response = "Hello! I'm your EmrSoft AI Assistant. I can help you book appointments, find prescriptions, and answer general healthcare questions. How can I assist you today?";
         nextActions = ['await_user_intent'];
         break;
       case 'general_inquiry':
@@ -662,7 +662,7 @@ export class AiService {
         .map(msg => `${msg.role}: ${msg.content}`)
         .join('\n');
 
-      const systemPrompt = `You are CURA AI, an advanced healthcare assistant powered by OpenAI GPT-4o with comprehensive capabilities for appointments, prescriptions, and general healthcare queries.
+      const systemPrompt = `You are EmrSoft AI, an advanced healthcare assistant powered by OpenAI GPT-4o with comprehensive capabilities for appointments, prescriptions, and general healthcare queries.
 
 AVAILABLE DOCTORS:
 ${doctors.map(d => `- Dr. ${d.firstName} ${d.lastName} (${d.role}) - ID: ${d.id}`).join('\n')}
@@ -812,7 +812,7 @@ Return JSON response with this structure:
         .map(msg => `${msg.role}: ${msg.content}`)
         .join('\n');
 
-      const systemPrompt = `You are CURA AI, an advanced healthcare assistant with sophisticated Natural Language Processing capabilities. Analyze the user's message with deep contextual understanding and provide comprehensive, accurate responses.
+      const systemPrompt = `You are EmrSoft AI, an advanced healthcare assistant with sophisticated Natural Language Processing capabilities. Analyze the user's message with deep contextual understanding and provide comprehensive, accurate responses.
 
 CONVERSATION CONTEXT:
 ${conversationHistoryText}
@@ -1740,7 +1740,7 @@ Return JSON with this exact structure:
 
     const knowledgeBase = await this.getMedicalKnowledgeBase();
     
-    const systemPrompt = `You are CURA AI, providing medically-informed responses while maintaining appropriate boundaries. Use medical knowledge to enhance responses but always include proper disclaimers.
+    const systemPrompt = `You are EmrSoft AI, providing medically-informed responses while maintaining appropriate boundaries. Use medical knowledge to enhance responses but always include proper disclaimers.
 
 INTENT ANALYSIS:
 ${JSON.stringify(intentClassification, null, 2)}
@@ -2274,7 +2274,7 @@ Return JSON with this structure:
       const response = await anthropic!.messages.create({
         model: DEFAULT_MODEL_STR,
         max_tokens: 1000,
-        system: `You are Cura AI Assistant, a healthcare chatbot for the Cura EMR system. You help with:
+        system: `You are EmrSoft AI Assistant, a healthcare chatbot for the EmrSoft EMR system. You help with:
 
 1. APPOINTMENT BOOKING - Schedule appointments between patients and doctors
 2. PRESCRIPTION SEARCH - Find and display patient prescriptions
@@ -3643,12 +3643,12 @@ What would you like to do?`;
       }
       
       // Handle greetings - ONLY exact matches or clear greeting patterns
-      else if (/^(hello|hi|hey|help)(\s+(there|there|you|cura|assistant))?[\s!]*$/i.test(lowerMessage.trim()) ||
+      else if (/^(hello|hi|hey|help)(\s+(there|there|you|emrsoft|assistant))?[\s!]*$/i.test(lowerMessage.trim()) ||
                lowerMessage.trim() === 'hello' || lowerMessage.trim() === 'hi' || 
                lowerMessage.trim() === 'hey' || lowerMessage.trim() === 'help') {
         intent = 'greeting';
         confidence = 0.9;
-        response = "Hello! I'm your Cura AI Assistant. I can help you:\n\n📅 **Book appointments** - Schedule consultations with doctors\n💊 **Find prescriptions** - Search and view patient medications\n\nHow can I assist you today?";
+        response = "Hello! I'm your EmrSoft AI Assistant. I can help you:\n\n📅 **Book appointments** - Schedule consultations with doctors\n💊 **Find prescriptions** - Search and view patient medications\n\nHow can I assist you today?";
       }
       // Default response - simple and clean
       else {

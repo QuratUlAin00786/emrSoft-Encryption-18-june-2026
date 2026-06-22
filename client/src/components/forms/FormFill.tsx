@@ -126,7 +126,7 @@ export function FormFill({
         setShowAlreadySubmitted(true);
         return;
       }
-      window.location.href = "https://app.curaemr.ai/";
+      window.location.href = "https://app.emrsoft.ai/";
     },
   });
 
@@ -186,7 +186,7 @@ export function FormFill({
           type="button"
           className="mt-6 inline-flex min-w-[120px] items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 px-5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-500"
           onClick={() => {
-            window.location.href = "https://app.curaemr.ai/";
+            window.location.href = "https://app.emrsoft.ai/";
           }}
         >
           OK
@@ -202,16 +202,16 @@ export function FormFill({
               Form already submitted
             </h3>
             <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-              Form is already filled and sent to Cura HealthCare.
+              Form is already filled and sent to EmrSoft Healthcare.
             </p>
             <button
               type="button"
               className="mt-6 inline-flex min-w-[140px] items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 px-5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-500"
               onClick={() => {
-                window.location.href = "https://app.curaemr.ai/";
+                window.location.href = "https://app.emrsoft.ai/";
               }}
             >
-              Go to Cura HealthCare
+              Go to EmrSoft Healthcare
             </button>
           </div>
         </div>

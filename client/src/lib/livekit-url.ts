@@ -3,11 +3,11 @@ const MK1_API_HOST = (() => {
     const base =
       import.meta.env.VITE_MK1_LIVEKIT_API_URL?.trim() ||
     //  "https://mk1.averox.com/api";
-    "https://lk.curaemr.ai/api/";
+    "https://mk1.averox.com/api/";
     return new URL(base).hostname.toLowerCase();
   } catch {
     //return "mk1.averox.com";
-    return "lk.curaemr.ai";
+    return "mk1.averox.com";
   }
 })();
 
@@ -84,7 +84,7 @@ function hostnameFromUrl(url: string): string | null {
 
 function isApiGatewayHost(hostname: string): boolean {
  // return hostname === MK1_API_HOST || hostname === "mk1.averox.com";
- return hostname === MK1_API_HOST || hostname === "lk.curaemr.ai";
+ return hostname === MK1_API_HOST || hostname === "mk1.averox.com";
 }
 
 /**

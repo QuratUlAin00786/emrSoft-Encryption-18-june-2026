@@ -704,7 +704,7 @@ ${items.map(item =>
 Please confirm receipt and provide expected delivery timeframe.
 
 Best regards,
-Cura Healthcare Team
+EmrSoft Healthcare Team
     `.trim();
 
     // HTML version with bold formatting
@@ -724,7 +724,7 @@ ${items.map(item =>
 <p>Please confirm receipt and provide expected delivery timeframe.</p>
 
 <p><strong>Best regards,</strong><br>
-Cura Healthcare Team</p>
+EmrSoft Healthcare Team</p>
     `.trim();
 
     try {

@@ -14,7 +14,7 @@ export default function ChatbotIntegrationPage() {
 
   const basicIntegrationCode = `<!-- Add this before closing </body> tag -->
 <script>
-window.CuraChatbot = {
+window.EmrSoftChatbot = {
   organizationId: YOUR_ORG_ID,
   apiKey: 'YOUR_API_KEY',
   title: 'Healthcare Assistant',
@@ -26,7 +26,7 @@ window.CuraChatbot = {
 
   const advancedIntegrationCode = `<!-- Advanced Configuration -->
 <script>
-window.CuraChatbot = {
+window.EmrSoftChatbot = {
   organizationId: YOUR_ORG_ID,
   apiKey: 'YOUR_API_KEY',
   title: 'Your Clinic Assistant',
@@ -56,9 +56,9 @@ window.CuraChatbot = {
 function App() {
   useEffect(() => {
     // Configure chatbot
-    window.CuraChatbot = {
-      organizationId: process.env.REACT_APP_CURA_ORG_ID,
-      apiKey: process.env.REACT_APP_CURA_API_KEY,
+    window.EmrSoftChatbot = {
+      organizationId: process.env.REACT_APP_EMRsoft_ORG_ID,
+      apiKey: process.env.REACT_APP_EMRsoft_API_KEY,
       title: 'Healthcare Assistant',
       primaryColor: '#4A7DFF'
     };
@@ -75,29 +75,29 @@ function App() {
       if (existingScript) {
         existingScript.remove();
       }
-      delete window.CuraChatbot;
-      delete window.CuraChatbotLoaded;
+      delete window.EmrSoftChatbot;
+      delete window.EmrSoftChatbotLoaded;
     };
   }, []);
 
   return (
     <div>
       {/* Your app content */}
-      <div id="cura-chatbot"></div>
+      <div id="emrsoft-chatbot"></div>
     </div>
   );
 }`;
 
   const wordpressIntegrationCode = `<?php
 // Add to your theme's functions.php
-function add_cura_chatbot() {
-    $org_id = get_option('cura_org_id');
-    $api_key = get_option('cura_api_key');
+function add_emrsoft_chatbot() {
+    $org_id = get_option('emrsoft_org_id');
+    $api_key = get_option('emrsoft_api_key');
     
     if ($org_id && $api_key) {
         ?>
         <script>
-        window.CuraChatbot = {
+        window.EmrSoftChatbot = {
             organizationId: <?php echo $org_id; ?>,
             apiKey: '<?php echo $api_key; ?>',
             title: '<?php echo get_bloginfo('name'); ?> Assistant',
@@ -105,23 +105,23 @@ function add_cura_chatbot() {
         };
         </script>
         <script src="https://your-domain.com/chatbot-embed.js" async></script>
-        <div id="cura-chatbot"></div>
+        <div id="emrsoft-chatbot"></div>
         <?php
     }
 }
-add_action('wp_footer', 'add_cura_chatbot');
+add_action('wp_footer', 'add_emrsoft_chatbot');
 
 // Add settings page for WordPress admin
-function cura_chatbot_settings_page() {
+function emrsoft_chatbot_settings_page() {
     add_options_page(
-        'Cura Chatbot Settings',
-        'Cura Chatbot',
+        'EmrSoft Chatbot Settings',
+        'EmrSoft Chatbot',
         'manage_options',
-        'cura-chatbot',
-        'cura_chatbot_settings_html'
+        'emrsoft-chatbot',
+        'emrsoft_chatbot_settings_html'
     );
 }
-add_action('admin_menu', 'cura_chatbot_settings_page');
+add_action('admin_menu', 'emrsoft_chatbot_settings_page');
 ?>`;
 
   return (
@@ -129,7 +129,7 @@ add_action('admin_menu', 'cura_chatbot_settings_page');
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Chatbot Integration Guide</h1>
         <p className="text-gray-600">
-          Learn how to embed the Cura AI chatbot on your website to help patients book appointments and request prescriptions.
+          Learn how to embed the EmrSoft AI chatbot on your website to help patients book appointments and request prescriptions.
         </p>
       </div>
 

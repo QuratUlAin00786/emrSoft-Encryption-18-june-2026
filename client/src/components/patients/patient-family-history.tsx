@@ -2925,7 +2925,7 @@ export default function PatientFamilyHistory({
                         showImmunizationDetails(immunization);
                       }
                     }}
-                    className="border rounded-lg p-3 cursor-pointer transition hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--cura-bluewave))]"
+                    className="border rounded-lg p-3 cursor-pointer transition hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--emrsoft-bluewave))]"
                   >
                     <div className="flex items-center justify-between">
                       <div>
@@ -2990,7 +2990,7 @@ export default function PatientFamilyHistory({
                           </td>
                           <td className="px-4 py-3">
                             <a
-                              className="text-sm font-semibold text-[hsl(var(--cura-bluewave))] hover:underline cursor-pointer"
+                              className="text-sm font-semibold text-[hsl(var(--emrsoft-bluewave))] hover:underline cursor-pointer"
                               onClick={() => window.open(file.url, "_blank")}
                             >
                               {file.filename}
@@ -3011,7 +3011,7 @@ export default function PatientFamilyHistory({
                                 onClick={() => window.open(file.url, "_blank")}
                                 title="View full-size"
                               >
-                                <Eye className="h-4 w-4 text-[hsl(var(--cura-bluewave))]" />
+                                <Eye className="h-4 w-4 text-[hsl(var(--emrsoft-bluewave))]" />
                               </Button>
                               <Button
                                 size="sm"

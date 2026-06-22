@@ -57,7 +57,7 @@ export async function seedDatabase() {
       const extraSampleUsers = [
         {
           organizationId: org.id,
-          email: "doctor2@cura.com",
+          email: "doctor2@emrsoft.ai",
           username: "doctor2",
           passwordHash: hashedDoctorPassword,
           firstName: "Michael",
@@ -70,7 +70,7 @@ export async function seedDatabase() {
         },
         {
           organizationId: org.id,
-          email: "doctor3@cura.com",
+          email: "doctor3@emrsoft.ai",
           username: "doctor3",
           passwordHash: hashedDoctorPassword,
           firstName: "David",
@@ -83,7 +83,7 @@ export async function seedDatabase() {
         },
         {
           organizationId: org.id,
-          email: "doctor4@cura.com",
+          email: "doctor4@emrsoft.ai",
           username: "doctor4",
           passwordHash: hashedDoctorPassword,
           firstName: "Lisa",
@@ -96,7 +96,7 @@ export async function seedDatabase() {
         },
         {
           organizationId: org.id,
-          email: "doctor5@cura.com",
+          email: "doctor5@emrsoft.ai",
           username: "doctor5",
           passwordHash: hashedDoctorPassword,
           firstName: "Robert",
@@ -109,7 +109,7 @@ export async function seedDatabase() {
         },
         {
           organizationId: org.id,
-          email: "receptionist@cura.com",
+          email: "receptionist@emrsoft.ai",
           username: "receptionist",
           passwordHash: hashedAdminPassword,
           firstName: "Jane",

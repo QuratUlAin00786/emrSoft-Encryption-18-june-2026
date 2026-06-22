@@ -319,9 +319,9 @@ function ViewClinicInfo({ user, onLoadHeader, onLoadFooter }: { user: any; onLoa
     <div className="space-y-6 py-4">
       {/* Display Saved Header with Logo - Saved Position */}
       {savedHeader && (
-        <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
+        <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
               <FileText className="h-5 w-5" />
               Saved Clinic Header ({savedHeader.logoPosition})
             </h3>
@@ -338,7 +338,7 @@ function ViewClinicInfo({ user, onLoadHeader, onLoadFooter }: { user: any; onLoa
               )}
               <Button
                 onClick={() => onLoadHeader(savedHeader, savedFooter)}
-                className="bg-[hsl(var(--cura-bluewave))] hover:bg-[hsl(var(--cura-electric-lilac))] text-light"
+                className="bg-[hsl(var(--emrsoft-bluewave))] hover:bg-[hsl(var(--emrsoft-electric-lilac))] text-light"
                 data-testid="button-load-header"
               >
                 Load
@@ -552,9 +552,9 @@ function ViewClinicInfo({ user, onLoadHeader, onLoadFooter }: { user: any; onLoa
 
       {/* Display Saved Footer */}
       {savedFooter && (
-        <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
+        <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
               <Palette className="h-5 w-5" />
               Saved Clinic Footer
             </h3>
@@ -571,7 +571,7 @@ function ViewClinicInfo({ user, onLoadHeader, onLoadFooter }: { user: any; onLoa
               )}
               <Button
                 onClick={() => onLoadFooter(savedFooter)}
-                className="bg-[hsl(var(--cura-bluewave))] hover:bg-[hsl(var(--cura-electric-lilac))] text-light"
+                className="bg-[hsl(var(--emrsoft-bluewave))] hover:bg-[hsl(var(--emrsoft-electric-lilac))] text-light"
                 data-testid="button-load-footer"
               >
                 Load
@@ -6473,9 +6473,9 @@ Coverage Details: [Insurance Coverage]`;
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100 dark:bg-[hsl(var(--cura-midnight))] forms-page-ui page-zoom-90">
+    <div className="h-screen flex flex-col bg-gray-100 dark:bg-[hsl(var(--emrsoft-midnight))] forms-page-ui page-zoom-90">
       {/* Page Header - Like Dashboard */}
-      <div className="flex items-center justify-between mr-5 bg-white dark:bg-[hsl(var(--cura-midnight))] px-2 py-1 rounded border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between mr-5 bg-white dark:bg-[hsl(var(--emrsoft-midnight))] px-2 py-1 rounded border-b border-gray-200 dark:border-gray-700">
         <div className="flex-1">
           <Header
             title="Forms"
@@ -6970,7 +6970,7 @@ Coverage Details: [Insurance Coverage]`;
                 className="space-y-5 rounded-3xl border border-gray-200 bg-white p-5 shadow-lg shadow-black/10 dark:border-gray-800 dark:bg-[#05070f] dark:text-slate-100"
               >
                 {/* Top Header - Professional Medical Theme */}
-                <div className="px-6 py-4 flex-shrink-0 bg-white dark:bg-[hsl(var(--cura-midnight))] border-b-2 border-gray-200 dark:border-[hsl(var(--cura-steel))]">
+                <div className="px-6 py-4 flex-shrink-0 bg-white dark:bg-[hsl(var(--emrsoft-midnight))] border-b-2 border-gray-200 dark:border-[hsl(var(--emrsoft-steel))]">
                   <div className="flex items-center justify-between gap-8">
                     <div className="flex items-center gap-4">
                       <Button
@@ -7208,7 +7208,7 @@ Coverage Details: [Insurance Coverage]`;
                       </SelectContent>
                     </Select>
 
-                    <div className="h-4 w-px bg-[hsl(var(--cura-steel))] dark:bg-[hsl(var(--cura-steel))] mx-1"></div>
+                    <div className="h-4 w-px bg-[hsl(var(--emrsoft-steel))] dark:bg-[hsl(var(--emrsoft-steel))] mx-1"></div>
 
                     {/* Text formatting - more visible */}
                     <Button
@@ -7236,7 +7236,7 @@ Coverage Details: [Insurance Coverage]`;
                       <Underline className="h-3 w-3" />
                     </Button>
 
-                    <div className="h-4 w-px bg-[hsl(var(--cura-steel))] dark:bg-[hsl(var(--cura-steel))] mx-1"></div>
+                    <div className="h-4 w-px bg-[hsl(var(--emrsoft-steel))] dark:bg-[hsl(var(--emrsoft-steel))] mx-1"></div>
 
                     {/* Lists */}
                     <Button
@@ -7256,7 +7256,7 @@ Coverage Details: [Insurance Coverage]`;
                       <ListOrdered className="h-3 w-3" />
                     </Button>
 
-                    <div className="h-4 w-px bg-[hsl(var(--cura-steel))] dark:bg-[hsl(var(--cura-steel))] mx-1"></div>
+                    <div className="h-4 w-px bg-[hsl(var(--emrsoft-steel))] dark:bg-[hsl(var(--emrsoft-steel))] mx-1"></div>
 
                     {/* Alignment */}
                     <Button
@@ -7292,7 +7292,7 @@ Coverage Details: [Insurance Coverage]`;
                       <AlignJustify className="h-3 w-3" />
                     </Button>
 
-                    <div className="h-4 w-px bg-[hsl(var(--cura-steel))] dark:bg-[hsl(var(--cura-steel))] mx-1"></div>
+                    <div className="h-4 w-px bg-[hsl(var(--emrsoft-steel))] dark:bg-[hsl(var(--emrsoft-steel))] mx-1"></div>
 
                     {/* Text color and tools */}
                     <div className="relative">
@@ -7305,7 +7305,7 @@ Coverage Details: [Insurance Coverage]`;
                         <Type className="h-3 w-3" />
                       </Button>
                       {showColorPicker && (
-                        <div className="absolute top-full left-0 mt-1 w-[180px] bg-white dark:bg-[hsl(var(--cura-midnight))] border border-[hsl(var(--cura-steel))] dark:border-[hsl(var(--cura-steel))] rounded shadow-lg p-3 z-50">
+                        <div className="absolute top-full left-0 mt-1 w-[180px] bg-white dark:bg-[hsl(var(--emrsoft-midnight))] border border-[hsl(var(--emrsoft-steel))] dark:border-[hsl(var(--emrsoft-steel))] rounded shadow-lg p-3 z-50">
                           <div className="grid grid-cols-8 gap-2">
                             {[
                               "#000000",
@@ -7327,7 +7327,7 @@ Coverage Details: [Insurance Coverage]`;
                             ].map((color) => (
                               <button
                                 key={color}
-                                className="w-5 h-5 border border-[hsl(var(--cura-steel))] rounded hover:scale-110 transition-transform"
+                                className="w-5 h-5 border border-[hsl(var(--emrsoft-steel))] rounded hover:scale-110 transition-transform"
                                 style={{ backgroundColor: color }}
                                 onClick={() => {
                                   const selection = window.getSelection();
@@ -7401,7 +7401,7 @@ Coverage Details: [Insurance Coverage]`;
                       <Highlighter className="h-3 w-3" />
                     </Button>
 
-                    <div className="h-4 w-px bg-[hsl(var(--cura-steel))] mx-1"></div>
+                    <div className="h-4 w-px bg-[hsl(var(--emrsoft-steel))] mx-1"></div>
 
                     <Button
                       variant="ghost"
@@ -7520,10 +7520,10 @@ Coverage Details: [Insurance Coverage]`;
 
 
                 </div>
-                <div className="flex-1 bg-[hsl(var(--cura-mist))] dark:bg-[hsl(var(--cura-midnight))] overflow-y-auto min-h-0 mt-4">
+                <div className="flex-1 bg-[hsl(var(--emrsoft-mist))] dark:bg-[hsl(var(--emrsoft-midnight))] overflow-y-auto min-h-0 mt-4">
                   <div className="h-full flex items-start justify-center p-4">
                     <div
-                      className="bg-white dark:bg-[hsl(var(--cura-midnight))] shadow-sm border border-white dark:border-[hsl(var(--cura-steel))] min-h-[600px] w-full max-w-[1200px] mx-auto"
+                      className="bg-white dark:bg-[hsl(var(--emrsoft-midnight))] shadow-sm border border-white dark:border-[hsl(var(--emrsoft-steel))] min-h-[600px] w-full max-w-[1200px] mx-auto"
                       style={{ width: "700px", maxWidth: "700px" }}
                     >
                       <div className="p-6">
@@ -7539,7 +7539,7 @@ Coverage Details: [Insurance Coverage]`;
                           onInput={(e) => setDocumentContent(e.currentTarget.innerHTML)}
                           suppressContentEditableWarning
                           data-placeholder="Start typing your document here..."
-                          className="w-full border-none outline-none text-[hsl(var(--cura-midnight))] dark:text-white leading-normal bg-transparent focus:outline-none [&:empty]:before:content-[attr(data-placeholder)] [&:empty]:before:text-gray-400"
+                          className="w-full border-none outline-none text-[hsl(var(--emrsoft-midnight))] dark:text-white leading-normal bg-transparent focus:outline-none [&:empty]:before:content-[attr(data-placeholder)] [&:empty]:before:text-gray-400"
                           style={{
                             fontSize: fontSize,
                             lineHeight: "1.6",
@@ -12715,8 +12715,8 @@ Registration No: [Number]`
         <DialogContent className="max-w-md">
           <div className="space-y-4">
             {/* Display the clinic info like in the attached image */}
-            <div className="p-6 bg-blue-50 dark:bg-[hsl(var(--cura-midnight))] border border-blue-200 dark:border-[hsl(var(--cura-steel))] rounded text-center relative">
-              <div className="text-[hsl(var(--cura-bluewave))] dark:text-[hsl(var(--cura-bluewave))] text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+            <div className="p-6 bg-blue-50 dark:bg-[hsl(var(--emrsoft-midnight))] border border-blue-200 dark:border-[hsl(var(--emrsoft-steel))] rounded text-center relative">
+              <div className="text-[hsl(var(--emrsoft-bluewave))] dark:text-[hsl(var(--emrsoft-bluewave))] text-lg font-semibold mb-2 flex items-center justify-center gap-2">
                 🏥 {editingClinicInfo.name || "Demo Healthcare Clinic 2"}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-300 mt-1">

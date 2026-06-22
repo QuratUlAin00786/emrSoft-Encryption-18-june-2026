@@ -2255,7 +2255,7 @@ export default function ClinicalDecisionSupport() {
                   variant="outline"
                   onClick={() => {
                     // Add guideline to favorites (localStorage)
-                    const favorites = JSON.parse(localStorage.getItem('cura_favorite_guidelines') || '[]');
+                    const favorites = JSON.parse(localStorage.getItem('emrsoft_favorite_guidelines') || '[]');
                     const favoriteItem = {
                       id: selectedGuideline.id,
                       title: selectedGuideline.title,
@@ -2268,7 +2268,7 @@ export default function ClinicalDecisionSupport() {
                     const existingIndex = favorites.findIndex((fav: any) => fav.id === selectedGuideline.id);
                     if (existingIndex === -1) {
                       favorites.push(favoriteItem);
-                      localStorage.setItem('cura_favorite_guidelines', JSON.stringify(favorites));
+                      localStorage.setItem('emrsoft_favorite_guidelines', JSON.stringify(favorites));
                       toast({ 
                         title: "Added to favorites", 
                         description: `${selectedGuideline.title} has been saved to your favorites` 

@@ -18,6 +18,7 @@ import { useDayRender, type DayProps } from "react-day-picker";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
+import { DEMO_TENANT_SUBDOMAIN } from "@/lib/branding";
 
 const anatomicalDiagramImage = "/anatomical-diagram-clean.svg";
 const facialDiagramImage = "/clean-facial-diagram.png";
@@ -1712,7 +1713,7 @@ Medical License: [License Number]
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
-          'X-Tenant-Subdomain': 'cura'
+          'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
         },
         credentials: 'include',
         body: JSON.stringify(analysisData)

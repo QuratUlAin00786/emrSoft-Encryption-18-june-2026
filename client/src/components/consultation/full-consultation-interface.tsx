@@ -6908,7 +6908,7 @@ ${
                         href={savedAnatomicalImage}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs font-semibold text-[hsl(var(--cura-bluewave))] hover:underline"
+                        className="text-xs font-semibold text-[hsl(var(--emrsoft-bluewave))] hover:underline"
                       >
                         View image
                       </a>
@@ -6994,7 +6994,7 @@ ${
                 href={savedPdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="font-semibold text-[hsl(var(--cura-bluewave))] hover:underline break-all"
+                className="font-semibold text-[hsl(var(--emrsoft-bluewave))] hover:underline break-all"
               >
                 {savedPdfUrl}
               </a>

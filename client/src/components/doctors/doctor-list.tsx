@@ -2721,7 +2721,7 @@ export function DoctorList({
                           <span className="truncate">
                             {isDoctorLike(user?.role)
                               ? (user?.email || '')
-                              : (selectedBookingDoctor?.email || 'doctor@cura.com')}
+                              : (selectedBookingDoctor?.email || 'doctor@emrsoft.ai')}
                           </span>
                         </div>
                         <div className="text-xs text-blue-600 dark:text-blue-400 mt-1">
@@ -2796,7 +2796,7 @@ export function DoctorList({
                       </div>
                       <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                         <span>📧</span>
-                        <span className="truncate">{patients?.find((p: any) => p.id.toString() === selectedPatient)?.email || 'patient2@cura.com'}</span>
+                        <span className="truncate">{patients?.find((p: any) => p.id.toString() === selectedPatient)?.email || 'patient2@emrsoft.ai'}</span>
                       </div>
                       <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                         <span>🏥</span>

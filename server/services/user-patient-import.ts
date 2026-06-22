@@ -118,7 +118,7 @@ export function getUserPatientSqlTemplates() {
       "organization_id",
       "email",
       "username",
-      "password_hash (optional — default cura123)",
+      "password_hash (optional — default emrsoft123)",
       "first_name",
       "last_name",
       "role (must be patient)",
@@ -486,7 +486,7 @@ export async function importUserPatientBatch(params: {
 
       let passwordHash = user.password_hash?.trim();
       if (!passwordHash || passwordHash.toLowerCase() === "null") {
-        passwordHash = await bcrypt.hash("cura123", 10);
+        passwordHash = await bcrypt.hash("emrsoft123", 10);
       } else if (!passwordHash.startsWith("$2")) {
         passwordHash = await bcrypt.hash(passwordHash, 10);
       }

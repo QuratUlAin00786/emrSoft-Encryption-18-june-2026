@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { storage } from "../storage";
 import { authService, type AuthTokenPayload } from "../services/auth";
+import { DEMO_TENANT_ORG, DEMO_ORG_ADMIN } from "@shared/demo-credentials";
 
 export interface TenantRequest extends Request {
   tenant?: {
@@ -130,8 +131,8 @@ export async function tenantMiddleware(req: TenantRequest, res: Response, next: 
     }
 
     if (!subdomain) {
-      subdomain = "cura";
-      console.log(`[TENANT-MIDDLEWARE] Defaulting subdomain to cura (no header/query/referrer)`);
+      subdomain = DEMO_TENANT_ORG.subdomain;
+      console.log(`[TENANT-MIDDLEWARE] Defaulting subdomain to ${DEMO_TENANT_ORG.subdomain} (no header/query/referrer)`);
     } else {
       console.log(`[TENANT-MIDDLEWARE] Detected subdomain: ${subdomain} from header/query/referrer`);
     }
@@ -169,11 +170,11 @@ export async function tenantMiddleware(req: TenantRequest, res: Response, next: 
     if (!organization) {
       organization = {
         id: 1,
-        name: "emrSoft Healthcare",
-        email: "admin@cura.global",
-        subdomain: "cura",
-        region: "UK",
-        brandName: "emrSoft",
+        name: DEMO_TENANT_ORG.name,
+        email: DEMO_ORG_ADMIN.email,
+        subdomain: DEMO_TENANT_ORG.subdomain,
+        region: DEMO_TENANT_ORG.region,
+        brandName: DEMO_TENANT_ORG.brandName,
         settings: {},
         features: {
           maxUsers: 50,

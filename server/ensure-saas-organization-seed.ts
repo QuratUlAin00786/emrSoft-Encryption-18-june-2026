@@ -1,6 +1,7 @@
 import {
   DEMO_ORG_ADMIN,
   DEMO_TENANT_ORG,
+  LEGACY_DEMO_TENANT_SUBDOMAIN,
   EMR_LOGO_PUBLIC_PATH,
 } from "@shared/demo-credentials";
 import { organizations } from "@shared/schema";
@@ -26,6 +27,32 @@ export async function ensureSaasOrganizationSeed() {
     .from(organizations)
     .where(eq(organizations.subdomain, DEMO_TENANT_ORG.subdomain))
     .limit(1);
+
+  if (!org) {
+    const [legacyOrg] = await db
+      .select()
+      .from(organizations)
+      .where(eq(organizations.subdomain, LEGACY_DEMO_TENANT_SUBDOMAIN))
+      .limit(1);
+
+    if (legacyOrg) {
+      [org] = await db
+        .update(organizations)
+        .set({
+          name: DEMO_TENANT_ORG.name,
+          subdomain: DEMO_TENANT_ORG.subdomain,
+          brandName: DEMO_TENANT_ORG.brandName,
+          email: DEMO_ORG_ADMIN.email,
+          subscriptionStatus: "active",
+          updatedAt: new Date(),
+        })
+        .where(eq(organizations.id, legacyOrg.id))
+        .returning();
+      console.log(
+        `[SAAS-SEED] Renamed legacy org subdomain "${LEGACY_DEMO_TENANT_SUBDOMAIN}" → "${DEMO_TENANT_ORG.subdomain}" (id=${org.id})`,
+      );
+    }
+  }
 
   if (!org) {
     [org] = await db

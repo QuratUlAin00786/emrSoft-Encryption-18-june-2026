@@ -2,11 +2,12 @@
   'use strict';
   
   // Check if chatbot is already initialized
-  if (window.CuraChatbotLoaded) return;
+  if (window.EmrSoftChatbotLoaded || window.CuraChatbotLoaded) return;
+  window.EmrSoftChatbotLoaded = true;
   window.CuraChatbotLoaded = true;
 
-  // Get configuration from window.CuraChatbot
-  const config = window.CuraChatbot || {};
+  // Get configuration from window.EmrSoftChatbot (legacy: window.CuraChatbot)
+  const config = window.EmrSoftChatbot || window.CuraChatbot || {};
   const {
     organizationId,
     apiKey,
@@ -17,8 +18,16 @@
   } = config;
 
   if (!organizationId || !apiKey) {
-    console.error('Cura Chatbot: organizationId and apiKey are required');
+    console.error('EmrSoft Chatbot: organizationId and apiKey are required');
     return;
+  }
+
+  function getChatbotContainer() {
+    return document.getElementById('emrsoft-chatbot') || document.getElementById('cura-chatbot');
+  }
+
+  function getMessagesContainer() {
+    return document.getElementById('emrsoft-messages') || document.getElementById('cura-messages');
   }
 
   // Create chatbot state
@@ -98,7 +107,7 @@
   }
 
   function updateChatMessages() {
-    const messagesContainer = document.getElementById('cura-messages');
+    const messagesContainer = getMessagesContainer();
     if (!messagesContainer) return;
 
     messagesContainer.innerHTML = '';
@@ -183,23 +192,23 @@
   }
 
   function createChatWidget() {
-    const container = document.getElementById('cura-chatbot');
+    const container = getChatbotContainer();
     if (!container) return;
 
     // Add CSS animations
-    if (!document.getElementById('cura-chatbot-styles')) {
-      const styles = createElement('style', { id: 'cura-chatbot-styles' });
+    if (!document.getElementById('emrsoft-chatbot-styles')) {
+      const styles = createElement('style', { id: 'emrsoft-chatbot-styles' });
       styles.textContent = `
         @keyframes bounce {
           0%, 80%, 100% { transform: scale(0); }
           40% { transform: scale(1); }
         }
-        .cura-chatbot-hidden { display: none !important; }
-        .cura-chatbot-button {
+        .emrsoft-chatbot-hidden { display: none !important; }
+        .emrsoft-chatbot-button {
           transition: all 0.2s ease;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .cura-chatbot-button:hover {
+        .emrsoft-chatbot-button:hover {
           transform: scale(1.05);
           box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
@@ -227,7 +236,7 @@
           zIndex: '9999',
           boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
         },
-        class: 'cura-chatbot-button',
+        class: 'emrsoft-chatbot-button',
         onclick: () => {
           isOpen = true;
           addMessage(welcomeMessage, 'bot');
@@ -380,7 +389,7 @@
 
     // Messages area
     const messagesArea = createElement('div', {
-      id: 'cura-messages',
+      id: 'emrsoft-messages',
       style: {
         flex: '1',
         padding: '16px',

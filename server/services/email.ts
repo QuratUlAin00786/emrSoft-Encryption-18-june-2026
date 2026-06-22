@@ -245,7 +245,7 @@ class EmailService {
       const smtpUser = process.env.SMTP_USER?.trim() || process.env.GMAIL_SMTP_USER?.trim();
       const smtpPass =
         process.env.SMTP_PASSWORD?.trim() || process.env.GMAIL_SMTP_PASSWORD?.trim();
-      const usingCuraSmtp = Boolean(process.env.SMTP_HOST?.trim());
+      const usingEmrSoftSmtp = Boolean(process.env.SMTP_HOST?.trim());
 
       if (smtpHost && smtpUser && smtpPass) {
         const secure =
@@ -259,7 +259,7 @@ class EmailService {
           port: smtpPort,
           secure,
           user: smtpUser,
-          provider: usingCuraSmtp ? "cura-smtp" : "gmail-fallback-env",
+          provider: usingEmrSoftSmtp ? "emrsoft-smtp" : "gmail-fallback-env",
         });
 
         this.transporter = nodemailer.createTransport({
@@ -1093,7 +1093,7 @@ emrSoft Team
     });
   }
 
-  // Template for prescription PDF emails with clinic logo in header and Cura logo in footer
+  // Template for prescription PDF emails with clinic logo in header and EmrSoft logo in footer
   generatePrescriptionEmail(
     patientName: string,
     pharmacyName: string,

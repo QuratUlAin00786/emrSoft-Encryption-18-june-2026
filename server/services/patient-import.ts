@@ -801,7 +801,7 @@ export async function importValidatedBatch(params: {
           throw new Error("Email already registered with another organization");
         }
         if (!globalEmail) {
-          const passwordHash = await bcrypt.hash("cura123", 10);
+          const passwordHash = await bcrypt.hash("emrsoft123", 10);
           const newUser = await storage.createUser({
             organizationId: params.organizationId,
             email,

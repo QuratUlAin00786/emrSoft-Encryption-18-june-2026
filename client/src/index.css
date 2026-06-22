@@ -210,16 +210,16 @@ button[data-testid="delete-customer-button"] {
   --ring: #4A7DFF;
   --radius: 0.5rem;
   
-  /* Cura brand colors - EXACT HEX VALUES FROM BRAND GUIDE */
-  --cura-bluewave: #4A7DFF;        /* Primary - Bluewave */
-  --cura-electric-lilac: #7279FB;  /* Secondary - Electric Lilac */
-  --cura-electric-violet: #C073FF; /* Electric Violet */
-  --cura-midnight: #162B61;        /* Supporting - Midnight */
-  --cura-steel: #9B9EAF;           /* Supporting - Steel */
-  --cura-mist: #E0E1F4;            /* Supporting - Mist */
-  --cura-mint-drift: #6CFFEB;      /* Accent - Mint Drift */
+  /* EmrSoft brand colors - EXACT HEX VALUES FROM BRAND GUIDE */
+  --emrsoft-bluewave: #4A7DFF;        /* Primary - Bluewave */
+  --emrsoft-electric-lilac: #7279FB;  /* Secondary - Electric Lilac */
+  --emrsoft-electric-violet: #C073FF; /* Electric Violet */
+  --emrsoft-midnight: #162B61;        /* Supporting - Midnight */
+  --emrsoft-steel: #9B9EAF;           /* Supporting - Steel */
+  --emrsoft-mist: #E0E1F4;            /* Supporting - Mist */
+  --emrsoft-mint-drift: #6CFFEB;      /* Accent - Mint Drift */
   
-  /* Chart colors using EXACT CURA BRAND HEX VALUES */
+  /* Chart colors using EXACT EMRSOFT BRAND HEX VALUES */
   --chart-1: #4A7DFF; /* Bluewave */
   --chart-2: #7279FB; /* Electric Lilac */
   --chart-3: #C073FF; /* Electric Violet */
@@ -255,14 +255,14 @@ button[data-testid="delete-customer-button"] {
   --ring: #4A7DFF;
   --radius: 0.5rem;
   
-  /* Cura brand colors for dark mode - exact hex values */
-  --cura-bluewave: #4A7DFF;
-  --cura-electric-lilac: #7279FB;
-  --cura-electric-violet: #C073FF;
-  --cura-midnight: #162B61;
-  --cura-steel: #9B9FAF;
-  --cura-mist: #E0E1F4;
-  --cura-mint-drift: #6CFFEB;
+  /* EmrSoft brand colors for dark mode - exact hex values */
+  --emrsoft-bluewave: #4A7DFF;
+  --emrsoft-electric-lilac: #7279FB;
+  --emrsoft-electric-violet: #C073FF;
+  --emrsoft-midnight: #162B61;
+  --emrsoft-steel: #9B9FAF;
+  --emrsoft-mist: #E0E1F4;
+  --emrsoft-mint-drift: #6CFFEB;
   
   /* Medical colors for dark mode */
   --medical-blue: hsl(222, 100%, 64%);
@@ -290,30 +290,30 @@ button[data-testid="delete-customer-button"] {
   background: #9ca3af;
 }
 
-/* CURA BRAND COLOR UTILITY CLASSES - EXACT HEX VALUES */
-.bg-cura-bluewave { background-color: #4A7DFF !important; }
-.bg-cura-electric-lilac { background-color: #7279FB !important; }
-.bg-cura-electric-violet { background-color: #C073FF !important; }
-.bg-cura-midnight { background-color: #162B61 !important; }
-.bg-cura-steel { background-color: #9B9EAF !important; }
-.bg-cura-mist { background-color: #E0E1F4 !important; }
-.bg-cura-mint-drift { background-color: #6CFFEB !important; }
+/* EMRSOFT BRAND COLOR UTILITY CLASSES - EXACT HEX VALUES */
+.bg-emrsoft-bluewave { background-color: #4A7DFF !important; }
+.bg-emrsoft-electric-lilac { background-color: #7279FB !important; }
+.bg-emrsoft-electric-violet { background-color: #C073FF !important; }
+.bg-emrsoft-midnight { background-color: #162B61 !important; }
+.bg-emrsoft-steel { background-color: #9B9EAF !important; }
+.bg-emrsoft-mist { background-color: #E0E1F4 !important; }
+.bg-emrsoft-mint-drift { background-color: #6CFFEB !important; }
 
-.text-cura-bluewave { color: #4A7DFF !important; }
-.text-cura-electric-lilac { color: #7279FB !important; }
-.text-cura-electric-violet { color: #C073FF !important; }
-.text-cura-midnight { color: #162B61 !important; }
-.text-cura-steel { color: #9B9EAF !important; }
-.text-cura-mist { color: #E0E1F4 !important; }
-.text-cura-mint-drift { color: #6CFFEB !important; }
+.text-emrsoft-bluewave { color: #4A7DFF !important; }
+.text-emrsoft-electric-lilac { color: #7279FB !important; }
+.text-emrsoft-electric-violet { color: #C073FF !important; }
+.text-emrsoft-midnight { color: #162B61 !important; }
+.text-emrsoft-steel { color: #9B9EAF !important; }
+.text-emrsoft-mist { color: #E0E1F4 !important; }
+.text-emrsoft-mint-drift { color: #6CFFEB !important; }
 
-.border-cura-bluewave { border-color: #4A7DFF !important; }
-.border-cura-electric-lilac { border-color: #7279FB !important; }
-.border-cura-electric-violet { border-color: #C073FF !important; }
-.border-cura-midnight { border-color: #162B61 !important; }
-.border-cura-steel { border-color: #9B9EAF !important; }
-.border-cura-mist { border-color: #E0E1F4 !important; }
-.border-cura-mint-drift { border-color: #6CFFEB !important; }
+.border-emrsoft-bluewave { border-color: #4A7DFF !important; }
+.border-emrsoft-electric-lilac { border-color: #7279FB !important; }
+.border-emrsoft-electric-violet { border-color: #C073FF !important; }
+.border-emrsoft-midnight { border-color: #162B61 !important; }
+.border-emrsoft-steel { border-color: #9B9EAF !important; }
+.border-emrsoft-mist { border-color: #E0E1F4 !important; }
+.border-emrsoft-mint-drift { border-color: #6CFFEB !important; }
 
 /* Patients tab - Age Distribution chart: white border in light theme, matches card background in dark theme */
 [data-age-distribution-chart],

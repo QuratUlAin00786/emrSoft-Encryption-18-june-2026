@@ -1,6 +1,6 @@
 /**
  * Multi-Tenant Core Package
- * Comprehensive multi-tenancy enforcement across the entire Cura EMR system
+ * Comprehensive multi-tenancy enforcement across the entire EmrSoft EMR system
  */
 
 import type { Express, Request, Response, NextFunction } from "express";

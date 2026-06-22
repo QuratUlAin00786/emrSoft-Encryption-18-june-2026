@@ -124,12 +124,15 @@ export const SAAS_CREDENTIALS = {
 /** Tenant org shown in SaaS admin → Customers (demo admin is org admin, not org 0) */
 export const DEMO_TENANT_ORG = {
   name: "emrSoft Healthcare",
-  subdomain: "cura",
+  subdomain: "emrsoft",
   brandName: "emrSoft",
   /** Contact email on the org record; demo admin user is james@emrsoft.ai */
   email: "james@emrsoft.ai",
   region: "UK" as const,
 };
+
+/** @deprecated Legacy demo subdomain — migrated to emrsoft on seed */
+export const LEGACY_DEMO_TENANT_SUBDOMAIN = "cura";
 
 export const DEMO_ORG_ADMIN = DEMO_SEED_USERS.find((u) => u.role === "admin")!;
 

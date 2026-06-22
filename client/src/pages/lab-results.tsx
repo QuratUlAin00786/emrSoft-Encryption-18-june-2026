@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-import curaIcon from "@/assets/cura-icon.png";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";

@@ -307,7 +307,7 @@ export default function AboutPage() {
                 <div className="text-gray-600 dark:text-gray-300 space-y-2">
                   <div>Phone: +44 161 123 4567</div>
                   <div>Email: info@halogroup.co.uk</div>
-                  <div>Support: support@cura-emr.com</div>
+                  <div>Support: support@emrsoft.ai</div>
                   <div>Sales: sales@halogroup.co.uk</div>
                 </div>
               </CardContent>

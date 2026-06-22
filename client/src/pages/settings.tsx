@@ -297,9 +297,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#7279FB', 'important'); 
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#7279FB', 'important');
-        root.style.setProperty('--cura-bluewave', '#7279FB', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#7279FB', 'important');
-        root.style.setProperty('--cura-mint-drift', '#C073FF', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#7279FB', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#7279FB', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#C073FF', 'important');
         root.style.setProperty('--medical-blue', '#7279FB', 'important');
         break;
       case 'midnight':
@@ -307,9 +307,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#162B61', 'important'); 
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#162B61', 'important');
-        root.style.setProperty('--cura-bluewave', '#162B61', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#2A4082', 'important');
-        root.style.setProperty('--cura-mint-drift', '#4A6FA5', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#162B61', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#2A4082', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#4A6FA5', 'important');
         root.style.setProperty('--medical-blue', '#162B61', 'important');
         break;
       case 'steel':
@@ -317,9 +317,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#9B9EAF', 'important'); 
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#9B9EAF', 'important');
-        root.style.setProperty('--cura-bluewave', '#9B9EAF', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#B5B8C7', 'important');
-        root.style.setProperty('--cura-mint-drift', '#A8ABBA', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#9B9EAF', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#B5B8C7', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#A8ABBA', 'important');
         root.style.setProperty('--medical-blue', '#9B9EAF', 'important');
         break;
       case 'mist':
@@ -327,9 +327,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#E0E1F4', 'important'); 
         root.style.setProperty('--primary-foreground', '#162B61', 'important');
         root.style.setProperty('--ring', '#E0E1F4', 'important');
-        root.style.setProperty('--cura-bluewave', '#E0E1F4', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#D1D3E8', 'important');
-        root.style.setProperty('--cura-mint-drift', '#E8E9F6', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#E0E1F4', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#D1D3E8', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#E8E9F6', 'important');
         root.style.setProperty('--medical-blue', '#E0E1F4', 'important');
         break;
       case 'mint-drift':
@@ -337,9 +337,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#6CFFEB', 'important'); 
         root.style.setProperty('--primary-foreground', '#162B61', 'important');
         root.style.setProperty('--ring', '#6CFFEB', 'important');
-        root.style.setProperty('--cura-bluewave', '#6CFFEB', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#5CFCE6', 'important');
-        root.style.setProperty('--cura-mint-drift', '#6CFFEB', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#6CFFEB', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#5CFCE6', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#6CFFEB', 'important');
         root.style.setProperty('--medical-blue', '#6CFFEB', 'important');
         break;
       case 'green':
@@ -347,9 +347,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#22C55E', 'important'); 
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#22C55E', 'important');
-        root.style.setProperty('--cura-bluewave', '#22C55E', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#10B981', 'important');
-        root.style.setProperty('--cura-mint-drift', '#34D399', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#22C55E', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#10B981', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#34D399', 'important');
         root.style.setProperty('--medical-blue', '#22C55E', 'important');
         break;
       case 'purple':
@@ -357,9 +357,9 @@ export default function Settings() {
         root.style.setProperty('--primary', '#7C3AED', 'important');
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#7C3AED', 'important');
-        root.style.setProperty('--cura-bluewave', '#7C3AED', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#A855F7', 'important');
-        root.style.setProperty('--cura-mint-drift', '#C084FC', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#7C3AED', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#A855F7', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#C084FC', 'important');
         root.style.setProperty('--medical-blue', '#7C3AED', 'important');
         break;
       case 'dark':
@@ -367,18 +367,18 @@ export default function Settings() {
         root.style.setProperty('--primary', '#374151', 'important');
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#374151', 'important');
-        root.style.setProperty('--cura-bluewave', '#374151', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#4B5563', 'important');
-        root.style.setProperty('--cura-mint-drift', '#6B7280', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#374151', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#4B5563', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#6B7280', 'important');
         root.style.setProperty('--medical-blue', '#374151', 'important');
         break;
       default: // Bluewave (Default)
         root.style.setProperty('--primary', '#4A7DFF', 'important');
         root.style.setProperty('--primary-foreground', '#FFFFFF', 'important');
         root.style.setProperty('--ring', '#4A7DFF', 'important');
-        root.style.setProperty('--cura-bluewave', '#4A7DFF', 'important');
-        root.style.setProperty('--cura-electric-lilac', '#7279FB', 'important');
-        root.style.setProperty('--cura-mint-drift', '#6CFFEB', 'important');
+        root.style.setProperty('--emrsoft-bluewave', '#4A7DFF', 'important');
+        root.style.setProperty('--emrsoft-electric-lilac', '#7279FB', 'important');
+        root.style.setProperty('--emrsoft-mint-drift', '#6CFFEB', 'important');
         root.style.setProperty('--medical-blue', '#4A7DFF', 'important');
         break;
     }
@@ -568,7 +568,7 @@ export default function Settings() {
     if (field === 'theme') {
       applyTheme(value);
       // Save theme to localStorage for persistence across pages
-      localStorage.setItem('cura-theme', value);
+      localStorage.setItem('emrsoft-theme', value);
     }
   };
 
@@ -1643,8 +1643,8 @@ export default function Settings() {
                   {/* Logo and Header Information Section in One Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Logo Upload Section */}
-                    <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                      <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                    <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                      <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                         <Image className="h-5 w-5" />
                         Clinic Logo
                       </h3>
@@ -1740,8 +1740,8 @@ export default function Settings() {
                     </div>
 
                     {/* Header Information Section */}
-                    <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                      <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                    <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                      <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                         <FileText className="h-5 w-5" />
                         Header Information
                       </h3>
@@ -1803,8 +1803,8 @@ export default function Settings() {
                   </div>
 
                   {/* Sub Heading Section */}
-                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                    <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                    <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                       <FileText className="h-5 w-5" />
                       Sub Heading
                     </h3>
@@ -1937,7 +1937,7 @@ export default function Settings() {
                       <Label className="text-sm font-medium mb-2 block">Header Preview:</Label>
                       
                       {/* Center Position Preview (default) */}
-                      <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
+                      <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
                         <p className="text-xs font-semibold mb-2 text-gray-500">Center Position</p>
                         <div style={{ borderBottom: '3px solid ' + clinicFooterInfo.backgroundColor, paddingBottom: '20px' }}>
                           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", gap: "20px" }}>
@@ -1986,8 +1986,8 @@ export default function Settings() {
                 
                 <TabsContent value="footer" className="space-y-6 py-4">
                   {/* Footer Information Section */}
-                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                    <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                    <h3 className="text-lg font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                       <Palette className="h-5 w-5" />
                       Footer Design & Information
                     </h3>
@@ -2143,20 +2143,20 @@ export default function Settings() {
           <Dialog open={showViewClinicInfoDialog} onOpenChange={setShowViewClinicInfoDialog}>
             <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-[hsl(var(--cura-bluewave))]">Saved Clinic Information</DialogTitle>
+                <DialogTitle className="text-2xl font-bold text-[hsl(var(--emrsoft-bluewave))]">Saved Clinic Information</DialogTitle>
               </DialogHeader>
 
               <div className="space-y-6 mt-4">
                 {(headerLoading || footerLoading) ? (
                   <div className="text-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[hsl(var(--cura-bluewave))] mx-auto mb-4"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[hsl(var(--emrsoft-bluewave))] mx-auto mb-4"></div>
                     <p className="text-gray-500 dark:text-gray-400">Loading clinic information...</p>
                   </div>
                 ) : (
                   <>
                 {savedHeader && (
-                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                    <h4 className="text-md font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                    <h4 className="text-md font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                       <FileText className="h-4 w-4" />
                       Saved Clinic Header ({savedHeader.logoPosition})
                     </h4>
@@ -2238,8 +2238,8 @@ export default function Settings() {
                 )}
 
                     {savedFooter ? (
-                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                    <h4 className="text-md font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                  <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                    <h4 className="text-md font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                       <Palette className="h-4 w-4" />
                       Saved Clinic Footer
                     </h4>
@@ -2261,8 +2261,8 @@ export default function Settings() {
                     </div>
                   </div>
                     ) : (
-                      <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--cura-midnight))]">
-                        <h4 className="text-md font-semibold mb-4 text-[hsl(var(--cura-bluewave))] flex items-center gap-2">
+                      <div className="border rounded-lg p-6 bg-white dark:bg-[hsl(var(--emrsoft-midnight))]">
+                        <h4 className="text-md font-semibold mb-4 text-[hsl(var(--emrsoft-bluewave))] flex items-center gap-2">
                           <Palette className="h-4 w-4" />
                           Saved Clinic Footer
                         </h4>

@@ -17,25 +17,25 @@ const REMINDER_LEVELS: Array<ReminderLevel & { label: string }> = [
     key: "reminder_7d",
     label: "7-day notice",
     daysBefore: 7,
-    subject: "Your Cura EMR subscription expires in 7 days",
+    subject: "Your EmrSoft EMR subscription expires in 7 days",
     template: ({ organization, daysRemaining }) =>
-      `Hello,\n\nYour organization ${organization} has ${daysRemaining} day${daysRemaining === 1 ? "" : "s"} of access remaining. Please renew before it expires to avoid disruption.\n\nRenew Now → https://app.curaemr.ai/saas/renew\n\nThanks,\nCura EMR`,
+      `Hello,\n\nYour organization ${organization} has ${daysRemaining} day${daysRemaining === 1 ? "" : "s"} of access remaining. Please renew before it expires to avoid disruption.\n\nRenew Now → https://app.emrsoft.ai/saas/renew\n\nThanks,\nEmrSoft EMR`,
   },
   {
     key: "reminder_1d",
     label: "1-day notice",
     daysBefore: 1,
-    subject: "Reminder: Your Cura EMR subscription expires tomorrow",
+    subject: "Reminder: Your EmrSoft EMR subscription expires tomorrow",
     template: ({ organization, daysRemaining }) =>
-      `Hi,\n\nJust a heads-up: ${organization} will lose access in ${daysRemaining} day. Renew now to keep using Cura EMR uninterrupted.\n\nRenew Now → https://app.curaemr.ai/saas/renew\n\nBest,\nCura EMR Billing`,
+      `Hi,\n\nJust a heads-up: ${organization} will lose access in ${daysRemaining} day. Renew now to keep using EmrSoft EMR uninterrupted.\n\nRenew Now → https://app.emrsoft.ai/saas/renew\n\nBest,\nEmrSoft EMR Billing`,
   },
   {
     key: "reminder_day_of",
     label: "Day-of notice",
     daysBefore: 0,
-    subject: "Final notice: Your Cura EMR subscription expires today",
+    subject: "Final notice: Your EmrSoft EMR subscription expires today",
     template: ({ organization }) =>
-      `Important: ${organization}'s subscription expires today. Renew immediately to restore access.\n\nRenew Now → https://app.curaemr.ai/saas/renew\n\nSupport is here if you need help.`,
+      `Important: ${organization}'s subscription expires today. Renew immediately to restore access.\n\nRenew Now → https://app.emrsoft.ai/saas/renew\n\nSupport is here if you need help.`,
   },
 ];
 

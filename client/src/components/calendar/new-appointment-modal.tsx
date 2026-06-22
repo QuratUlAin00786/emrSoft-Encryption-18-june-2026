@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { appointmentSchema, AppointmentFormData } from "./appointment-form-schema";
 import { useAuth } from "@/hooks/use-auth";
+import { DEMO_TENANT_SUBDOMAIN } from "@/lib/branding";
 
 interface NewAppointmentModalProps {
   isOpen: boolean;
@@ -161,7 +162,7 @@ export function NewAppointmentModal({ isOpen, onClose, onAppointmentCreated }: N
     try {
       const token = localStorage.getItem('auth_token');
       const headers: Record<string, string> = {
-        'X-Tenant-Subdomain': 'cura'
+        'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
       };
       
       if (token) {
@@ -229,7 +230,7 @@ export function NewAppointmentModal({ isOpen, onClose, onAppointmentCreated }: N
     try {
       const token = localStorage.getItem('auth_token');
       const headers: Record<string, string> = {
-        'X-Tenant-Subdomain': 'cura'
+        'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
       };
       
       if (token) {
@@ -388,7 +389,7 @@ export function NewAppointmentModal({ isOpen, onClose, onAppointmentCreated }: N
     try {
       const token = localStorage.getItem('auth_token');
       const headers: Record<string, string> = {
-        'X-Tenant-Subdomain': 'cura'
+        'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
       };
       
       if (token) {
@@ -458,7 +459,7 @@ export function NewAppointmentModal({ isOpen, onClose, onAppointmentCreated }: N
     try {
       const token = localStorage.getItem('auth_token');
       const headers: Record<string, string> = {
-        'X-Tenant-Subdomain': 'cura'
+        'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
       };
       
       if (token) {
@@ -495,7 +496,7 @@ export function NewAppointmentModal({ isOpen, onClose, onAppointmentCreated }: N
     try {
       const token = localStorage.getItem('auth_token');
       const headers: Record<string, string> = {
-        'X-Tenant-Subdomain': 'cura'
+        'X-Tenant-Subdomain': DEMO_TENANT_SUBDOMAIN
       };
       
       if (token) {

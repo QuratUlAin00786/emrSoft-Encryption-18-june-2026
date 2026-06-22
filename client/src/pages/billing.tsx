@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRolePermissions } from "@/hooks/use-role-permissions";
 import { useCurrency } from "@/hooks/use-currency";
 import { isDoctorLike } from "@/lib/role-utils";
+import { DEMO_TENANT_SUBDOMAIN } from "@/lib/branding";
 import { TREATMENT_NAME_OPTIONS } from "@/lib/treatment-name-options";
 import { Header } from "@/components/layout/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9512,7 +9513,7 @@ export default function BillingPage() {
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     
-    // Cura Brand Colors
+    // EmrSoft Brand Colors
     const primaryColor = '#4A7DFF'; // Bluewave
     const accentColor = '#6CFFEB'; // Mint Drift
     const darkGray = '#1F2937';
@@ -11996,7 +11997,7 @@ export default function BillingPage() {
                                 const response = await fetch(`/api/reports/revenue-breakdown?${params}`, {
                                   headers: {
                                     'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
-                                    'X-Tenant-Subdomain': localStorage.getItem('user_subdomain') || 'cura'
+                                    'X-Tenant-Subdomain': localStorage.getItem('user_subdomain') || DEMO_TENANT_SUBDOMAIN
                                   }
                                 });
                                 

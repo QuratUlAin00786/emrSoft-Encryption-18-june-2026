@@ -384,7 +384,7 @@ function PayPalRedirectButton({ planId, planName, amount, onSuccess, onError }: 
       
       // Create realistic PayPal demo session
       const sessionToken = `EC-${Math.random().toString(36).substr(2, 17).toUpperCase()}`;
-      const paypalUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${sessionToken}&amount=${amount}&currency_code=GBP&business=cura-demo@averox.com`;
+      const paypalUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${sessionToken}&amount=${amount}&currency_code=GBP&business=emrsoft-demo@averox.com`;
       
       toast({
         title: "Redirecting to PayPal",

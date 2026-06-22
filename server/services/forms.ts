@@ -139,7 +139,7 @@ interface ShareEmailResult {
 
 export class FormService {
   private readonly secret =
-    process.env.FORM_SHARE_SECRET || process.env.JWT_SECRET || "cura-form-secret";
+    process.env.FORM_SHARE_SECRET || process.env.JWT_SECRET || "emrsoft-form-secret";
   private readonly defaultExpiryDays = Number(process.env.FORM_SHARE_EXPIRY_DAYS || "7");
   private readonly frontendUrl = FormService.resolvePublicFormsBaseUrl();
 
@@ -1501,7 +1501,7 @@ If you did not expect this email, contact your clinic.`;
       deliverTo ||
       (typeof patient.email === "string" && patient.email.includes("@") ? patient.email : "");
     return this.buildShareEmailContentForRecipient(
-      emailForGreeting || "patient@cura.local",
+      emailForGreeting || "patient@emrsoft.local",
       link,
       formTitle,
       greeting,

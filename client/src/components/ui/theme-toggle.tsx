@@ -20,7 +20,7 @@ export function ThemeToggle() {
         .dark img[alt*="Logo"]:not([data-theme-exempt]) {
           filter: brightness(0.9) contrast(1.1);
         }
-        .dark .bg-white:not(.dark\\:bg-\\[hsl\\(var\\(--cura-midnight\\)\\)\\]) {
+        .dark .bg-white:not(.dark\\:bg-\\[hsl\\(var\\(--emrsoft-midnight\\)\\)\\]) {
           background-color: hsl(222.2, 84%, 4.9%) !important;
           color: hsl(210, 40%, 98%) !important;
         }

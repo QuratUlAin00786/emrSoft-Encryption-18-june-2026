@@ -6516,7 +6516,7 @@ export default function MessagingPage() {
                             data-testid="textarea-campaign-content"
                           />
                           <p className="text-xs text-muted-foreground">
-                            Example: "Hello [FirstName], your update from Cura Healthcare EMR."
+                            Example: "Hello [FirstName], your update from EmrSoft Healthcare EMR."
                           </p>
                         </div>
 

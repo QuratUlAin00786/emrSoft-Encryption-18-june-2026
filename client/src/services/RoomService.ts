@@ -1,5 +1,5 @@
 //const AVEROX_API_URL = 'https://mk1.averox.com/api';
-const AVEROX_API_URL = 'https://lk.curaemr.ai/api/';
+const AVEROX_API_URL = 'https://mk1.averox.com/api/';
 const AVEROX_API_KEY = import.meta.env.VITE_AVEROX_API_KEY;
 
 export interface RoomCreateResponse {

@@ -140,7 +140,7 @@ export default function AIAgentPage() {
     {
       id: '1',
       type: 'assistant',
-      content: "Hello! I'm your Cura AI Assistant. Please select what you'd like to do:",
+      content: "Hello! I'm your EmrSoft AI Assistant. Please select what you'd like to do:",
       timestamp: new Date(),
       showMainOptions: true
     }
@@ -575,7 +575,7 @@ export default function AIAgentPage() {
       const completionMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: "Thank you for using Cura AI Assistant! If you need any further assistance, feel free to ask.",
+        content: "Thank you for using EmrSoft AI Assistant! If you need any further assistance, feel free to ask.",
         timestamp: new Date(),
         showMainOptions: true
       };
@@ -618,7 +618,7 @@ export default function AIAgentPage() {
       const completionMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: "Thank you for using Cura AI Assistant! If you need any further assistance, feel free to ask.",
+        content: "Thank you for using EmrSoft AI Assistant! If you need any further assistance, feel free to ask.",
         timestamp: new Date(),
         showMainOptions: true
       };
@@ -661,7 +661,7 @@ export default function AIAgentPage() {
       const completionMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: "✅ Thank you for using Cura AI Assistant! Your appointment booking process is complete. If you need any further assistance, feel free to ask.",
+        content: "✅ Thank you for using EmrSoft AI Assistant! Your appointment booking process is complete. If you need any further assistance, feel free to ask.",
         timestamp: new Date(),
         showMainOptions: true
       };
@@ -1254,7 +1254,7 @@ export default function AIAgentPage() {
             <Sparkles className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Cura AI Assistant</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">EmrSoft AI Assistant</h1>
             <p className="text-gray-600 dark:text-gray-300">Intelligent appointment booking and prescription management</p>
           </div>
         </div>

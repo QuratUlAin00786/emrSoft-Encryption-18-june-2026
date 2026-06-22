@@ -37,7 +37,7 @@ export async function getOAuthClient(organizationId: number): Promise<OAuthClien
 
     const baseUrl = process.env.REPLIT_DEV_DOMAIN 
       ? `https://${process.env.REPLIT_DEV_DOMAIN}`
-      : 'https://app.curaemr.ai';
+      : 'https://app.emrsoft.ai';
 
     const oauthClient = new OAuthClient({
       clientId: settings.clientId,

@@ -513,7 +513,7 @@ export function registerSaaSRoutes(app: Express) {
 
       const testAdminUser = {
         id: 348,
-        email: "admin@cura.com", // Using your real email from the customer list
+        email: "admin@emrsoft.ai", // Using your real email from the customer list
         firstName: "Muhammad",
         lastName: "Younus",
         tempPassword: "temp123",
