@@ -680,6 +680,32 @@ export const payments = pgTable("payments", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// JazzCash payment transactions - tracks gateway payment sessions and callbacks
+export const jazzcashTransactions = pgTable("jazzcash_transactions", {
+  id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").notNull(),
+  invoiceId: integer("invoice_id").notNull(),
+  patientId: text("patient_id"),
+  organizationSubdomain: text("organization_subdomain"),
+  txnRefNo: text("txn_ref_no").notNull().unique(),
+  billReference: text("bill_reference").notNull(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  amountPaisa: text("amount_paisa").notNull(),
+  currency: varchar("currency", { length: 3 }).notNull().default("PKR"),
+  status: varchar("status", { length: 20 }).notNull().default("pending"),
+  responseCode: varchar("response_code", { length: 10 }),
+  responseMessage: text("response_message"),
+  retrievalReferenceNo: text("retrieval_reference_no"),
+  secureHashVerified: boolean("secure_hash_verified").default(false),
+  callbackPayload: jsonb("callback_payload").$type<Record<string, unknown>>().default({}),
+  requestPayload: jsonb("request_payload").$type<{
+    formAction?: string;
+    formFields?: Record<string, string>;
+  }>().default({}),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Insurance Payments - Track individual insurance payments for invoices
 export const insurancePayments = pgTable("insurance_payments", {
   id: serial("id").primaryKey(),
@@ -2860,6 +2886,8 @@ export const insertPaymentSchema = createInsertSchema(payments).omit({
 
 export type Payment = typeof payments.$inferSelect;
 export type InsertPayment = z.infer<typeof insertPaymentSchema>;
+
+export type JazzcashTransaction = typeof jazzcashTransactions.$inferSelect;
 
 export const insertInsurancePaymentSchema = createInsertSchema(insurancePayments).omit({
   id: true,

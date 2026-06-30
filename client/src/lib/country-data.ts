@@ -152,7 +152,7 @@ export interface CountryGroup {
 }
 
 /**
- * Get filtered countries for organization creation (UAE, UK, and European countries only)
+ * Get filtered countries for organization creation (UAE, Pakistan, UK, and European countries)
  * Organized by regions with headers
  * @returns Array of CountryGroup objects with countries grouped by region
  */
@@ -160,6 +160,11 @@ export const getFilteredCountriesForOrganization = (): CountryGroup[] => {
   // UAE countries
   const uaeCountries = [
     countryDataMap["AE"], // United Arab Emirates
+  ].filter(Boolean);
+
+  // Pakistan
+  const pakistanCountries = [
+    countryDataMap["PK"], // Pakistan
   ].filter(Boolean);
 
   // European countries
@@ -202,6 +207,13 @@ export const getFilteredCountriesForOrganization = (): CountryGroup[] => {
     groups.push({
       label: "UAE",
       countries: uaeCountries,
+    });
+  }
+
+  if (pakistanCountries.length > 0) {
+    groups.push({
+      label: "Pakistan",
+      countries: pakistanCountries,
     });
   }
 

@@ -9,6 +9,7 @@ import { useCurrency } from "@/hooks/use-currency";
 import { isDoctorLike } from "@/lib/role-utils";
 import { DEMO_TENANT_SUBDOMAIN } from "@/lib/branding";
 import { TREATMENT_NAME_OPTIONS } from "@/lib/treatment-name-options";
+import { getInvoicePatientDisplayName } from "@/lib/patient-field-display";
 import { Header } from "@/components/layout/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -68,6 +69,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Check, ChevronsUpDown, MoreVertical } from "lucide-react";
+
+type InvoicePaymentMethod =
+  | "Cash"
+  | "Online Payment"
+  | "Insurance"
+  | "Jazz Cash"
+  | "Not Selected";
 
 interface Invoice {
   id: number;
@@ -5194,9 +5202,7 @@ export default function BillingPage() {
   const [showStatusCountsPopup, setShowStatusCountsPopup] = useState(false);
   const [showMonthWisePopup, setShowMonthWisePopup] = useState(false);
   const [isListView, setIsListView] = useState(true);
-  const [invoicePaymentMethod, setInvoicePaymentMethod] = useState<
-    "Cash" | "Online Payment" | "Insurance" | "Not Selected"
-  >("Not Selected");
+  const [invoicePaymentMethod, setInvoicePaymentMethod] = useState<InvoicePaymentMethod>("Not Selected");
   const [invoiceStatus, setInvoiceStatus] = useState<"pending" | "paid" | "partial">("pending");
   const [insuranceDetails, setInsuranceDetails] = useState({
     provider: "",
@@ -5267,14 +5273,15 @@ export default function BillingPage() {
     setShowInsuranceInfoDialog(true);
   };
   const [isCreatingInvoice, setIsCreatingInvoice] = useState(false);
+  const [isInitiatingJazzCash, setIsInitiatingJazzCash] = useState(false);
   const [isUpdatingInvoice, setIsUpdatingInvoice] = useState(false);
 
-  const handleInvoicePaymentMethodChange = (newMethod: "Cash" | "Online Payment" | "Insurance" | "Not Selected") => {
+  const handleInvoicePaymentMethodChange = (newMethod: InvoicePaymentMethod) => {
     setInvoicePaymentMethod(newMethod);
     if (newMethod === "Cash") {
       setInvoiceStatus("paid");
-    } else if (newMethod === "Online Payment") {
-      // Online Payment means payment is expected, status will be "pending" or "sent", not "unpaid"
+    } else if (newMethod === "Online Payment" || newMethod === "Jazz Cash") {
+      // Online/JazzCash payment expected — invoice stays unpaid until gateway confirms
       setInvoiceStatus("pending");
     } else if (newMethod === "Not Selected") {
       // "Not Selected" means no payment method chosen, status will be "unpaid" on server
@@ -5669,6 +5676,33 @@ export default function BillingPage() {
       // Clean up URL
       window.history.replaceState({}, document.title, window.location.pathname);
     }
+
+    const jazzcashSuccess = params.get("jazzcash_success");
+    const jazzcashFailed = params.get("jazzcash_failed");
+    const jazzcashInvoiceId = params.get("invoice_id");
+    const jazzcashMessage = params.get("message");
+
+    if (jazzcashSuccess === "true" && jazzcashInvoiceId) {
+      toast({
+        title: "JazzCash Payment Successful",
+        description: `Invoice payment completed successfully.`,
+        variant: "default",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/billing/invoices"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/billing"] });
+      queryClient.refetchQueries({ queryKey: ["/api/billing/invoices"] });
+
+      const subdomain = localStorage.getItem("user_subdomain") || "demo";
+      window.history.replaceState({}, document.title, `/${subdomain}/billing?tab=invoices`);
+    } else if (jazzcashFailed === "true") {
+      toast({
+        title: "JazzCash Payment Failed",
+        description: jazzcashMessage || "Payment was not completed. Please try again.",
+        variant: "destructive",
+      });
+      const subdomain = localStorage.getItem("user_subdomain") || "demo";
+      window.history.replaceState({}, document.title, `/${subdomain}/billing?tab=invoices`);
+    }
   }, [toast, queryClient]);
   const [isInvoiceSaved, setIsInvoiceSaved] = useState(false);
   const [clinicHeader, setClinicHeader] = useState<any>(null);
@@ -6035,12 +6069,13 @@ export default function BillingPage() {
     setEditingServiceContext(null);
   };
 
-  const mapPaymentMethodForForm = (invoice: Invoice): "Cash" | "Online Payment" | "Insurance" | "Not Selected" => {
+  const mapPaymentMethodForForm = (invoice: Invoice): InvoicePaymentMethod => {
     const raw = String(invoice.paymentMethod || "Not Selected").trim().toLowerCase();
     if (invoice.status === "unpaid" && raw === "online payment") return "Not Selected";
     if (raw === "cash") return "Cash";
     if (raw === "insurance" || invoice.insurance?.provider) return "Insurance";
     if (raw === "online payment") return "Online Payment";
+    if (raw === "jazz cash") return "Jazz Cash";
     return "Not Selected";
   };
 
@@ -6162,7 +6197,7 @@ export default function BillingPage() {
     let finalPaymentMethod = invoicePaymentMethod || "Not Selected";
     if (!invoicePaymentMethod || invoicePaymentMethod === "Not Selected") {
       finalPaymentMethod = "Not Selected";
-    } else if (invoicePaymentMethod === "Online Payment") {
+    } else if (invoicePaymentMethod === "Online Payment" || invoicePaymentMethod === "Jazz Cash") {
       finalPaymentMethod = editingInvoiceId ? invoicePaymentMethod : "Not Selected";
     }
 
@@ -6380,10 +6415,8 @@ export default function BillingPage() {
     // "Online Payment" should only be set when payment is actually completed via Stripe
     if (!invoicePaymentMethod || invoicePaymentMethod === "Not Selected") {
       finalPaymentMethod = "Not Selected";
-    } else if (invoicePaymentMethod === "Online Payment") {
-      // "Online Payment" should only be used when payment is actually processed
-      // Since we're creating a new invoice, it's not paid yet, so use "Not Selected"
-      // The payment method will be updated to "Online Payment" when Stripe payment succeeds
+    } else if (invoicePaymentMethod === "Online Payment" || invoicePaymentMethod === "Jazz Cash") {
+      // Gateway payment methods are set after successful payment callback
       finalPaymentMethod = "Not Selected";
     }
 
@@ -6543,6 +6576,47 @@ export default function BillingPage() {
           // Still show success modal for invoice creation
           setCreatedInvoiceNumber(createdInvoice.invoiceNumber || "");
           setShowSuccessModal(true);
+        }
+      } else if (originalPaymentMethod === "Jazz Cash") {
+        try {
+          setIsInitiatingJazzCash(true);
+          const jazzResponse = await apiRequest("POST", "/api/payments/jazzcash/create", {
+            invoiceId: createdInvoice.id,
+          });
+          const jazzData = await jazzResponse.json();
+          if (!jazzResponse.ok) {
+            throw new Error(
+              jazzData.message || jazzData.error || "Failed to initiate JazzCash payment",
+            );
+          }
+
+          const redirectPath =
+            jazzData.redirectUrl ||
+            (jazzData.transactionId
+              ? `/api/payments/jazzcash/redirect/${jazzData.transactionId}`
+              : null);
+
+          if (!redirectPath) {
+            throw new Error("JazzCash redirect URL was not returned by the server");
+          }
+
+          // Full-page navigation to server-hosted auto-submit form (reliable in React SPAs)
+          window.location.assign(buildUrl(redirectPath));
+          return;
+        } catch (error: any) {
+          console.error("JazzCash payment initiation error:", error);
+          toast({
+            title: "JazzCash Payment Setup Failed",
+            description:
+              error.message ||
+              "Invoice was created but JazzCash payment could not be started. You can pay from Outstanding invoices.",
+            variant: "destructive",
+            duration: 12000,
+          });
+          setCreatedInvoiceNumber(createdInvoice.invoiceNumber || "");
+          setShowSuccessModal(true);
+        } finally {
+          setIsInitiatingJazzCash(false);
         }
       } else {
         setCreatedInvoiceNumber(createdInvoice.invoiceNumber || "");
@@ -8240,6 +8314,12 @@ export default function BillingPage() {
     ? patients?.find((p: any) => p.patientId === selectedPatient)
     : null;
 
+  const resolveInvoicePatientName = useCallback(
+    (invoice: { patientName?: unknown; patientId?: string }) =>
+      getInvoicePatientDisplayName(invoice, patients),
+    [patients],
+  );
+
   // Fetch all invoices to filter out services that already have invoices
   const { data: allInvoices = [] } = useQuery({
     queryKey: ["/api/billing/invoices", "filter-services"],
@@ -8972,8 +9052,9 @@ export default function BillingPage() {
     // For doctors/nurses: Universal search across all invoice fields
     if ((user?.role === 'doctor' || user?.role === 'nurse') && universalSearch) {
       const searchLower = universalSearch.toLowerCase();
+      const resolvedPatientName = resolveInvoicePatientName(invoice);
       const matchesUniversalSearch = 
-        invoice.patientName?.toLowerCase().includes(searchLower) ||
+        resolvedPatientName.toLowerCase().includes(searchLower) ||
         String(invoice.id).toLowerCase().includes(searchLower) ||
         String(invoice.invoiceNumber || '').toLowerCase().includes(searchLower) ||
         String(invoice.patientId).toLowerCase().includes(searchLower) ||
@@ -8990,8 +9071,9 @@ export default function BillingPage() {
     }
     
     // For non-doctors: Search by Invoice No. (invoiceNumber) and Patient Name only
+    const resolvedPatientName = resolveInvoicePatientName(invoice);
     const matchesSearch = !searchQuery || 
-      (invoice.patientName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (resolvedPatientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       String(invoice.invoiceNumber || '').toLowerCase().includes(searchQuery.toLowerCase()));
     
     const matchesStatus = statusFilter === "all" || invoice.status === statusFilter;
@@ -9015,7 +9097,7 @@ export default function BillingPage() {
     
     // Filter by patient name
     const matchesPatientName = !patientNameFilter || 
-      invoice.patientName?.toLowerCase().includes(patientNameFilter.toLowerCase());
+      resolveInvoicePatientName(invoice).toLowerCase().includes(patientNameFilter.toLowerCase());
     
     // Filter by invoice ID search (searches both invoiceNumber and id)
     const matchesInvoiceIdSearch = !invoiceIdSearchFilter || 
@@ -10200,8 +10282,8 @@ export default function BillingPage() {
                                   <span className="truncate block">{invoice.invoiceNumber || invoice.id}</span>
                                 </td>
                                 {user?.role !== 'patient' && (
-                                  <td className="px-2 py-1.5 text-[11px] text-gray-900 dark:text-gray-100 truncate" title={invoice.patientName}>
-                                    {invoice.patientName}
+                                  <td className="px-2 py-1.5 text-[11px] text-gray-900 dark:text-gray-100 truncate" title={resolveInvoicePatientName(invoice)}>
+                                    {resolveInvoicePatientName(invoice)}
                                   </td>
                                 )}
                                 {(user?.role === 'patient' || user?.role === 'admin') && (
@@ -10398,7 +10480,7 @@ export default function BillingPage() {
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-3">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{invoice.patientName}</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{resolveInvoicePatientName(invoice)}</h3>
                                 {user?.role === 'patient' ? (
                                   <Badge className={`${getStatusColor(invoice.status)} px-3 py-1`}>
                                     {invoice.status}
@@ -10992,8 +11074,8 @@ export default function BillingPage() {
                                     <span className="block truncate">{invoice.serviceId || invoice.service_id || invoice.items?.[0]?.serviceId ? String(invoice.serviceId || invoice.service_id || invoice.items?.[0]?.serviceId) : '-'}</span>
                                   </td>
                                   {user?.role !== 'patient' && (
-                                  <td className="px-2 py-1.5 text-[11px] text-gray-900 dark:text-gray-100 truncate max-w-0" title={invoice.patientName}>
-                                    <div className="truncate">{invoice.patientName}</div>
+                                  <td className="px-2 py-1.5 text-[11px] text-gray-900 dark:text-gray-100 truncate max-w-0" title={resolveInvoicePatientName(invoice)}>
+                                    <div className="truncate">{resolveInvoicePatientName(invoice)}</div>
                                   </td>
                                   )}
                                   <td className="px-2 py-1.5 text-[11px] text-gray-900 dark:text-gray-100 truncate max-w-0" title={doctorName}>
@@ -11131,7 +11213,7 @@ export default function BillingPage() {
                             <div className="flex items-start justify-between">
                               <div className="flex-1">
                                 <div className="flex items-center gap-3 mb-3">
-                                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{invoice.patientName}</h3>
+                                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{resolveInvoicePatientName(invoice)}</h3>
                                   {isAdmin ? (
                                     <Select 
                                       value={invoice.status} 
@@ -11337,7 +11419,7 @@ export default function BillingPage() {
                           }).map((invoice) => (
                             <tr key={invoice.id} className="hover:bg-gray-50 dark:hover:bg-slate-800" data-testid={`outstanding-invoice-row-${invoice.id}`}>
                               <td className="px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">{invoice.id}</td>
-                              <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-100">{invoice.patientName}</td>
+                              <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-100">{resolveInvoicePatientName(invoice)}</td>
                               <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-100">{format(new Date(invoice.dateOfService), 'MMM d, yyyy')}</td>
                               <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-100">{format(new Date(invoice.dueDate), 'MMM d, yyyy')}</td>
                               <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-gray-100">{formatCurrency(invoice.totalAmount)}</td>
@@ -13059,6 +13141,7 @@ export default function BillingPage() {
                     <SelectItem value="Not Selected">Not Selected</SelectItem>
                     <SelectItem value="Cash">Cash</SelectItem>
                     <SelectItem value="Online Payment">Online Payment</SelectItem>
+                    <SelectItem value="Jazz Cash">Jazz Cash</SelectItem>
                     <SelectItem value="Insurance">Insurance</SelectItem>
                   </SelectContent>
                 </Select>
@@ -13146,6 +13229,14 @@ export default function BillingPage() {
               </div>
             )}
 
+            {invoicePaymentMethod === "Jazz Cash" && (
+              <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-sm text-green-800 dark:text-green-200">
+                  After creating the invoice, you will be redirected to the JazzCash secure payment gateway to complete payment in PKR.
+                </p>
+              </div>
+            )}
+
             <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
               <div className="flex items-center gap-2">
                 <Label className="font-semibold">Invoice Type:</Label>
@@ -13200,8 +13291,12 @@ export default function BillingPage() {
                 {isUpdatingInvoice ? "Saving..." : "Save & Regenerate PDF"}
               </Button>
             ) : (
-              <Button onClick={handleCreateInvoice} disabled={isCreatingInvoice} variant="default">
-                {isCreatingInvoice ? "Processing..." : "Review & Confirm"}
+              <Button onClick={handleCreateInvoice} disabled={isCreatingInvoice || isInitiatingJazzCash} variant="default">
+                {isCreatingInvoice || isInitiatingJazzCash
+                  ? isInitiatingJazzCash
+                    ? "Redirecting to JazzCash..."
+                    : "Processing..."
+                  : "Review & Confirm"}
               </Button>
             )}
           </DialogFooter>

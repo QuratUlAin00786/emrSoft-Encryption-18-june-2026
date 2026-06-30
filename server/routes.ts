@@ -13,6 +13,7 @@ import { authService } from "./services/auth";
 import { aiService } from "./services/ai";
 import { registerSaaSRoutes } from "./saas-routes";
 import { registerPatientImportRoutes } from "./patient-import-routes";
+import { registerJazzCashRoutes } from "./jazzcash-routes";
 import { tenantMiddleware, authMiddleware, requireRole, requireNonPatientRole, gdprComplianceMiddleware, requireModulePermission, resolveOrganizationId, type TenantRequest } from "./middleware/tenant";
 import { multiTenantEnforcer, validateOrganizationFilter, withTenantIsolation } from "./middleware/multi-tenant-enforcer";
 import { initializeMultiTenantPackage, getMultiTenantPackage } from "./packages/multi-tenant-core";
@@ -4228,7 +4229,9 @@ The emrSoft Team`,
     if (
       req.path.startsWith("/saas/") ||
       req.path.startsWith("/public/") ||
-      req.path === "/patient-import/health"
+      req.path === "/patient-import/health" ||
+      req.path.startsWith("/payments/jazzcash/callback") ||
+      req.path.startsWith("/payments/jazzcash/redirect")
     ) {
       return next();
     }
@@ -4236,6 +4239,7 @@ The emrSoft Team`,
   });
 
   registerPatientImportRoutes(app);
+  registerJazzCashRoutes(app);
 
   // Role list — registered after global /api auth (early registration could miss middleware in some deployments)
   app.get("/api/roles", requireRole(["admin"]), async (req: TenantRequest, res) => {
@@ -35988,10 +35992,11 @@ ${clinicName}`;
         status as string | undefined
       );
 
+      const patients = await storage.getPatientsByOrganization(req.tenant!.id);
+
       // Filter invoices for patient users - only show their own invoices
       if (req.user?.role === "patient") {
         // Find the patient record for this user to get their patientId string
-        const patients = await storage.getPatientsByOrganization(req.tenant!.id);
         const userPatient = patients.find(p => p.email?.toLowerCase() === req.user!.email.toLowerCase());
 
         if (userPatient) {
@@ -36160,8 +36165,11 @@ ${clinicName}`;
         };
       }));
 
-      console.log(`✅ Found ${enrichedInvoices.length} invoices`);
-      res.json(enrichedInvoices);
+      const { enrichInvoicesWithPatientNames } = await import("./utils/invoice-patient-display.js");
+      const invoicesWithPatientNames = enrichInvoicesWithPatientNames(enrichedInvoices, patients);
+
+      console.log(`✅ Found ${invoicesWithPatientNames.length} invoices`);
+      res.json(invoicesWithPatientNames);
     } catch (error) {
       console.error("Invoices fetch error:", error);
       res.status(500).json({ error: "Failed to fetch invoices" });
@@ -36254,13 +36262,17 @@ ${clinicName}`;
 
       const overallInvoices = allInvoices.filter(invoice => allMatchingIds.has(invoice.id));
 
+      const patients = await storage.getPatientsByOrganization(organizationId);
+      const { enrichInvoicesWithPatientNames } = await import("./utils/invoice-patient-display.js");
+      const enrich = (list: typeof allInvoices) => enrichInvoicesWithPatientNames(list, patients);
+
       console.log(`✅ Doctor invoices found - Overall: ${overallInvoices.length}, Appointments: ${appointmentInvoices.length}, Lab: ${labInvoices.length}, Imaging: ${imagingInvoices.length}`);
 
       res.json({
-        overall: overallInvoices,
-        appointments: appointmentInvoices,
-        labResults: labInvoices,
-        imaging: imagingInvoices
+        overall: enrich(overallInvoices),
+        appointments: enrich(appointmentInvoices),
+        labResults: enrich(labInvoices),
+        imaging: enrich(imagingInvoices)
       });
     } catch (error) {
       console.error("Doctor invoices fetch error:", error);
